@@ -47,19 +47,22 @@ a:active {
   gap: 0.5rem;
   padding: 0rem 1.5rem;
   padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   background-color: #f6f5f3;
 }
 .side-bar_socials {
   height: 30rem;
   border-bottom: 1px solid #ccc;
+  padding-bottom: 2rem;
   display: flex;
-  gap: 3.2rem;
+  gap: 2rem;
   padding-top: 1.5rem;
   flex-direction: column;
   align-items: center;
   background-color: #f6f5f3;
   position: relative;
 }
+
 /* .side-bar_socials::after {
   position: absolute;
   content: "10";
@@ -91,10 +94,14 @@ a:active {
 .social-icons-container {
   position: relative;
 }
-.socials-icon {
+.side-bar_socials span {
   width: 2.4rem;
   height: 2.4rem;
 }
+/* .socials-icon {
+  width: 4rem;
+  height: 4rem;
+} */
 .message-icon {
   border: 2px solid #eae8e9;
   border-radius: 50%;
@@ -107,19 +114,27 @@ a:active {
   height: 4rem;
 }
 .side-bar_functional {
-  height: 64.3%;
+  height: 80rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 1.5rem;
-  padding-bottom: 3rem;
+  padding-top: 3rem;
+  gap: 40rem;
   background-color: #f6f5f3;
+}
+.side-bar_functional div:nth-child(2) {
+  width: 5rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  padding: 3rem;
+
+  flex-direction: column;
 }
 
 .meta-img {
-  width: 2rem;
-  height: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   background: none;
 }
 .setting-icon {
