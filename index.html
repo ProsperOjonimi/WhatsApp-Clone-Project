@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A responsive Whatsapp Web clone built with HTML, CSS and Vanilla JavaScript, showcasing a clean chat UI layout "
+    />
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    <script defer src="app.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <title>Whatsapp Web UI &ndash; Responsive clone</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- SIDEBAR -->
+      <div class="side-bar">
+        <div class="side-bar_socials">
+       
+          <div><ion-icon name="chatbox-ellipses" class="socials-icon  "></ion-icon></div>
+        
+         
+            <div><ion-icon name="nuclear-outline" class="socials-icon"></ion-icon></div>
+              <div><ion-icon name="chatbubble-ellipses-outline" class="socials-icon message-icon"></ion-icon></div>
+              <div class="socials-icon-container">
+                <div><ion-icon name="people-outline" class="socials-icon"></ion-icon></div>
+                </div>
+              
+        </div>
+        <div class="side-bar_functional">
+          <div class="meta-img">
+            <img src="https://static.whatsapp.net/rsrc.php/v4/ye/r/W2MDyeo0zkf.png" alt="meta-ai-logo" class="meta-img">
+          </div>
+          <div class="settings-profile-pic">
+            <div><ion-icon name="settings-outline" class="setting-icon"></ion-icon></div>
+            <div class="profile-pic">
+              <img src="img/profilepic-removebg-preview.png" alt="profile-pic" class="profile-pic">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- ----------- -->
+      <!-- CHAT LIST -->
+      <div class="chat-list">
+        <div class="chat-list_header">
+          <p class="chat-list_header-text">WhatsApp</p>
+          <div class="chat-list_header-icons">
+            <ion-icon name="bag-add-outline" class="header-icons"></ion-icon>
+            <ion-icon name="ellipsis-vertical" class="header-icons"></ion-icon>
+          </div>
+        </div>
+        <div class="chat-list_search-bar">
+          <label for="search"></label>
+            <a href="#"
+              ><ion-icon name="search" class="search-icon"></ion-icon
+            ></a>
+            
+              </label>
+          
+          <input
+            type="text"
+            name="search"
+            id="search"
+            class="search-space"
+            placeholder="Search or start a new chat"
+          />
+        </div>
+        <div class="chat-list_state">
+          <div class="state state-all">All</div>
+          <div class="state state-unread">Unread</div>
+          <div class="state state-favorites">Favorites</div>
+          <div class="state state-groups">Groups</div>
+        </div>
+        <div class="chat-list_chats">
+           <a href="#" class="chat-list-link">
+          <div class="chat-list_proper">
+            <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+          <div class="message-description">
+              <p class="person-name">John 200L MBBS</p>
+              <p class="person-text">alright thank you very much</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">17:00</p>
+          <div class="message-no">1</div>
+          </div>
+
+          </div>
+          </a>
+           <a href="#" class="chat-list-link">
+            <div class="chat-list_proper"> 
+              <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">
+              <p class="person-name">Eniola 2</p>
+              <p class="person-text">That's a good idea. Will do</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">16:50</p>
+          <div class="message-no">1</div>
+          </div>
+            
+            </div>
+            </a>
+             <a href="#" class="chat-list-link">
+      <div class="chat-list_proper"> 
+        <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+           <div class="message-description">
+              <p class="person-name">Mercy</p>
+              <p class="person-text">Okay okay 😂</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time grey-color">12:21</p>
+          <div class="message-no no-fill"></div>
+          </div>
+      
+      
+      </div>
+      </a>
+       <a href="#" class="chat-list-link">
+        <div class="chat-list_proper"> 
+          <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">
+              <p class="person-name">Shaydee Coder</p>
+              <p class="person-text"><ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon> Alright, thanks</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time grey-color">11:07</p>
+          <div class="message-no no-fill"></div>
+          </div>
+        
+        
+        </div>
+        </a>
+         <a href="#" class="chat-list-link">
+        <div class="chat-list_proper">
+          
+        <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">
+              <p class="person-name">Ojonimi⚡(You) </p>
+              <p class="person-text"><ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon> Alright, thanks</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time grey-color">10:34</p>
+          <div class="message-no no-fill"></div>
+          </div>
+        
+        </div>
+        </a>
+         <a href="#" class="chat-list-link">
+         <div class="chat-list_proper"> 
+          <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">    
+          <p class="person-name">Josiah Frank</p>              
+           <p class="person-text">Yh</p>            
+          </div>             
+          <div class="message-information">             
+            <p class="message-time grey-color">Yesterday<p>          
+             <div class="message-no no-fill"></div>           
+            </div>                 
+        
+        
+        </div>
+        </a>
+         <a href="#" class="chat-list-link">
+        <div class="chat-list_proper"> 
+          
+        <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+          
+                 <div class="message-description">
+              <p class="person-name">Sis</p>
+              <p class="person-text"><ion-icon name="checkmark-done-outline" class="
+                checkmark-icon_blue"></ion-icon> Alright, thanks</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time grey-color">Yesterday</p>
+          <div class="message-no no-fill"></div>
+          </div>
+        
+        
+        
+        </div>
+        </a>
+        <a href="#" class="chat-list-link">
+        <div class="chat-list_proper"> 
+          
+        <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+           <div class="message-description">    
+          <p class="person-name">Unana</p>              
+           <p class="person-text">Yeah</p>            
+          </div>             
+          <div class="message-information">
+            <p class="message-time">Monday</p>
+          <div class="message-no">1</div>
+          </div>        
+        
+        
+        </div>
+        </a>
+         <a href="#" class="chat-list-link">
+          <div class="chat-list_proper">
+
+            <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">
+              <p class="person-name">Francis S</p>
+              <p class="person-text">Thanks bro 😭 😭</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">Monday</p>
+          <div class="message-no">1</div>
+          </div>
+        
+            
+          
+          </div>
+          </a>
+           <a href="#" class="chat-list-link">
+            <div class="chat-list_proper"> 
+              <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+         <div class="message-description">
+              <p class="person-name">Adedapo, 200L MBBS</p>
+              <p class="person-text">Alright then 👌</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">Monday</p>
+          <div class="message-no">1</div>
+          </div>
+            
+            
+            
+            </div>
+            </a>
+             <a href="#" class="chat-list-link">
+          <div class="chat-list_proper">  
+<div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+          <div class="message-description">
+              <p class="person-name">The Joseph's❤️</p>
+              <p class="person-text">Mum: Happy Sunday everyone</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">Sunday</p>
+          <div class="message-no">2</div>
+          </div>
+            
+
+
+
+          </div>
+          </a>
+            <a href="#" class="chat-list-link">
+            <div class="chat-list_proper">  
+<div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+          <div class="message-description">
+              <p class="person-name">Emmanuella</p>
+              <p class="person-text"><ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>Hey</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time grey-color">Sunday</p>
+          <div class="message-no no-fill"></div>
+          </div>
+
+
+            </div>
+            </a>
+         
+        
+        </div>
+      </div>
+      <!-- ---------------- -->
+
+      <!-- CHAT INTERFACE -->
+      <div class="chat-interface">
+        <div class="chat-interface_header">
+          <div class="person-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+              <div class="person-description">
+              <p class="person-name">Shaydee Coder</p>
+             
+          </div>
+          <div class="message-icons">
+            <div>
+            <ion-icon name="videocam-outline" class="chat-function-icons"></ion-icon>
+            <ion-icon name="chevron-down-outline" class="chat-function-icons"></ion-icon>
+            </div>
+            <ion-icon name="search-outline" class="chat-function-icons"></ion-icon>
+            <ion-icon name="ellipsis-vertical" class="chat-function-icons" ></ion-icon>
+
+          </div>
+
+        </div>
+        <div class="chat-interface_chats">
+          <div class="chat-box-one">
+            <div>
+              <p>Hello</p>
+                <span>11:00</span>
+            </div>
+
+
+            <div>
+<p>Good morning</p>
+                <span>11:01</span>
+
+
+            </div>
+
+
+
+            <div>
+<p>How are you doing?</p>
+                <span>11:03</span>
+
+
+            </div>
+            <div>
+
+<p>Yeah, you can add it to your GitHub repo</p>
+                <span>11:03</span>
+
+
+            </div>
+            <div>
+
+ <p>Now I'll give you a task to work on</p>
+                <span>11:03</span>
+
+            </div>
+
+
+            <div>
+
+ <p>And I'll recommend a JavaScript course for you later this weekend</p>
+                <span>11:04</span>
+
+
+            </div>
+            <div>
+              <p>Your task. Build a clone of the WhatsApp web app</p>
+                <span>11:05</span>
+              </div>
+            <div>
+               <p>I'll only recommend the JavaScript course when you're done with the task</p>
+                <span>11:05</span>
+            </div>
+            <div>
+             
+
+              <span class="message-tag-one">
+
+                <p>You</p>
+                <p> 
+                But for some reason, the netlify form isn't working
+                </p>
+
+              </span>
+              <p> We can take a look at it together later
+                 <span>
+11:05
+              </span></p>
+            </div>
+
+          </div>
+          <div class="chat-box-two">
+            <div>
+             <span class="message-tag">
+              <p>Shadyee Coder</p>
+              <p>Yeah, you can add it to your GitHub repo </p>
+             </span>
+              <p>Okay
+                 <span>
+11:06 <ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>
+              </span></p>
+            </div>
+            <div>
+               <span class="message-tag">
+              <p>Shadyee Coder</p>
+              <p>Your task. Build a clone of the WhatsApp web app </p>
+             </span>
+              <p>Okay, I'll work on this
+                 <span>
+11:06 <ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>
+              </span></p>
+            </div>
+            <div>
+               <span class="message-tag">
+              <p>Shadyee Coder</p>
+              <p>Your task. Build a clone of the WhatsApp web app </p>
+             </span>
+              <p>Okay, I'll work on this
+                 <span>
+11:06 <ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>
+              </span></p>
+            </div>
+
+          </div>
+        </div>
+        <div class="chat-interface_message-bar">
+          <div class="accessory-icons">
+            <ion-icon name="add" class="icons-accessory" ></ion-icon>
+            <ion-icon name="images-outline" class="icons-accessory" ></ion-icon>
+          </div>
+         <input type="text" class="message-space" placeholder="Type a message">
+         <div class="voice-recording-icon" >
+          <ion-icon name="mic" class="icons-accessory"></ion-icon>
+         </div>
+        </div>
+      </div>
+
+      <!-- --------------------- -->
+    </div>
+  </body>
+</html>
