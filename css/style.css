@@ -7,8 +7,13 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
   overflow-x: hidden;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 a:link,
 a:visited {
@@ -51,11 +56,11 @@ a:active {
   background-color: #f6f5f3;
 }
 .side-bar_socials {
-  height: 30rem;
+  height: 25rem;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   padding-top: 1.5rem;
   flex-direction: column;
   align-items: center;
@@ -119,7 +124,7 @@ a:active {
   flex-direction: column;
   align-items: center;
   padding-top: 3rem;
-  gap: 40rem;
+  gap: 58.5rem;
   background-color: #f6f5f3;
 }
 .side-bar_functional div:nth-child(2) {
@@ -136,15 +141,18 @@ a:active {
   width: 2.4rem;
   height: 2.4rem;
   background: none;
+  cursor: pointer;
 }
 .setting-icon {
   width: 2.4rem;
   height: 2.4rem;
+  cursor: pointer;
 }
 .profile-pic {
   width: 3.5rem;
   height: 4rem;
   border-radius: 50%;
+  cursor: pointer;
 }
 /* ---------- */
 
@@ -174,15 +182,11 @@ a:active {
   width: 2.4rem;
   height: 2.4rem;
 }
-.chat-list_header-text {
-  font-size: 2.8rem;
-  font-weight: 600;
-  color: #3fb078;
-}
+
 .chat-list_search-bar {
-  height: 6.28%;
+  height: 5rem;
   width: 94%;
-  padding-left: 2rem;
+  padding-left: 0.5rem;
   display: flex;
   gap: 1.5rem;
   align-items: center;
@@ -195,9 +199,9 @@ a:active {
 }
 .search-space {
   background-color: #f6f5f3;
-  width: 77.79%;
-  height: 100%;
+  width: 30rem;
   border: none;
+  font-size: 1.8rem;
 
   color: #615f62;
 }
@@ -211,42 +215,60 @@ a:active {
   color: #615f62;
 }
 .search-icon {
-  height: 2.4rem;
-  width: 2.4rem;
+  height: 2rem;
+  width: 2rem;
   color: #6f6e6c;
 }
 
 .chat-list_state {
-  height: 5.23%;
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  font-size: 1.5rem;
+  padding-top: 1rem;
   padding-left: 2rem;
   color: #615f62;
 }
 .state {
-  width: 8rem;
+  font-size: 1.9rem;
+  width: 10rem;
   text-align: center;
   border: 2px solid #e2e2e2;
   border-radius: 25px;
-  padding: 0.5rem;
+  padding: 0.9rem;
   color: #615f62;
 }
 .state-all {
-  width: 4rem;
+  width: 6rem;
   border-radius: 40%;
   background-color: #d7fbd3;
   color: #658e6c;
 }
 .chat-list_chats {
-  height: 79.581%;
+  height: 100rem;
 
   display: flex;
   gap: 1.5rem;
+  padding-top: 2.5rem;
   flex-direction: column;
   overflow: scroll;
+
   overflow-x: hidden;
+}
+.chat-list_chats::-webkit-scrollbar {
+  width: 8px; /* scrollbar width */
+}
+.chat-list_chats::-webkit-scrollbar {
+  height: 8px; /* scrollbar width */
+}
+.chat-list_chats::-webkit-scrollbar-track {
+  background: #f1f1f1; /* track color */
+  border-radius: 10px;
+}
+.chat-list_chats::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+.chat-list_chats::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a; /* darker on hover */
 }
 .chat-list_proper {
   width: 100%;
@@ -270,22 +292,22 @@ a:active {
   background-color: #f6f5f3;
 }
 .person-icon {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 3.5rem;
+  height: 3.5rem;
   color: #676664;
 }
 .message-description {
   display: flex;
-  width: 72%;
+  width: 50rem;
   flex-direction: column;
   gap: 0.5rem;
 }
 .person-name {
-  font-size: 1.6rem;
-  color: #363233;
+  font-size: 2rem;
+  color: black;
 }
 .person-text {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: #9fa0a2;
   display: flex;
   align-items: center;
