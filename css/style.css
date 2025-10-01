@@ -46,11 +46,11 @@ a:active {
   flex-direction: column;
   gap: 0.5rem;
   padding: 0rem 1.5rem;
-  padding-top: 0.5rem;
+  padding-top: 1.5rem;
   background-color: #f6f5f3;
 }
 .side-bar_socials {
-  height: 35.11%;
+  height: 30rem;
   border-bottom: 1px solid #ccc;
   display: flex;
   gap: 3.2rem;
@@ -101,7 +101,11 @@ a:active {
   padding: 0.3rem;
   background-color: #eae8e9;
 }
-
+.btn {
+  border: none;
+  width: 4rem;
+  height: 4rem;
+}
 .side-bar_functional {
   height: 64.3%;
   display: flex;
@@ -112,12 +116,7 @@ a:active {
   padding-bottom: 3rem;
   background-color: #f6f5f3;
 }
-.settings-profile-pic {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
+
 .meta-img {
   width: 2rem;
   height: 2rem;
