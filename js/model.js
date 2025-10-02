@@ -29,7 +29,7 @@ export const chats = [
   },
   {
     chatName: "Ojonimi",
-    msgSent: ["Alright, thanks"],
+    msgSent: ["Brooo"],
     msgRecieved: [],
     timeOfLastChat: "10:34",
     seen: true,
@@ -43,7 +43,7 @@ export const chats = [
   },
   {
     chatName: "Sis",
-    msgSent: ["Alright, thanks"],
+    msgSent: ["Alright, no problem"],
     msgRecieved: [],
     timeOfLastChat: "8:50",
     seen: true,
