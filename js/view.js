@@ -1,8 +1,32 @@
 const initialBackground = document.querySelector(".whatsapp-open");
 const inputBar = document.querySelector(".search-space");
 const searchBar = document.querySelector(".chat-list_search-bar");
+const chatContainer = document.querySelector(".chat-list");
 const chatListContainer = document.querySelector(".chat-list_chats");
+const addNewBtn = document.querySelector(".new-chat");
+const addChatsContainer = document.querySelector(".add-chats");
+const addChatsBack = document.querySelector(".btn_add-chats-back");
+const messages = document.querySelector(".socials-icon_messages");
+class AddChats {
+  constructor() {
+    addNewBtn.addEventListener("click", this.showAddChatContainer.bind(this));
+  }
 
+  removeChatContainer() {
+    [addChatsBack, messages].forEach((b) => {
+      b.addEventListener("click", function () {
+        addChatsContainer.style.display = "none";
+        chatContainer.classList.remove("hidden");
+      });
+    });
+  }
+  showAddChatContainer() {
+    addNewBtn.addEventListener("click", function () {
+      addChatsContainer.style.display = "flex";
+      chatContainer.classList.add("hidden");
+    });
+  }
+}
 class ChatList {
   constructor() {
     chatListContainer.innerHTML = "";
@@ -21,7 +45,7 @@ class ChatList {
         }
       };
       const html = `
-    <a href="" class="chat-list-link">
+    <a  class="chat-list-link">
           <div class="chat-list_proper">
             <div class="message-profile-img">
               <ion-icon name="person" class="person-icon"></ion-icon>
@@ -82,3 +106,4 @@ class App {
 
 export const app = new App();
 export const chatList = new ChatList();
+export const addChats = new AddChats();

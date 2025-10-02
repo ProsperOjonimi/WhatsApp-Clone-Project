@@ -7,7 +7,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: "Segoe UI", Helvetica, sans-serif;
   overflow-x: hidden;
 }
 button {
@@ -191,7 +191,8 @@ a:active {
   height: 2.4rem;
 }
 
-.chat-list_search-bar {
+.chat-list_search-bar,
+.chat-list_search-bar_add {
   height: 5rem;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -207,7 +208,8 @@ a:active {
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
 }
-.search-space {
+.search-space,
+.search-space_add {
   background-color: #f6f5f3;
   width: 45rem;
   border: none;
@@ -215,7 +217,8 @@ a:active {
 
   color: #615f62;
 }
-.search-space:focus {
+.search-space:focus,
+.search-space_add:focus {
   outline: none;
   border: none;
 }
@@ -945,9 +948,10 @@ a:active {
   border-radius: 20px;
 }
 .add-chats {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 3rem;
+  transition: display 5s ease-out;
 }
 .add-chats_header {
   display: flex;
@@ -970,10 +974,19 @@ a:active {
 .c {
   background-color: #1daa61;
   border-radius: 50%;
-  padding: 1.55rem;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .chat-p {
   color: #0a0a0a;
+}
+.btn_add-chats-back {
+  cursor: pointer;
 }
 .contacts-p {
   font-size: 2rem;
@@ -988,7 +1001,7 @@ a:active {
   display: inline-block;
   width: 90%;
   margin: 0 3rem;
-  padding-left: 1rem;
+  padding: 1rem;
   border-radius: 11px;
 }
 
