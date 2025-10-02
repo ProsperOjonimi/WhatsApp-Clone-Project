@@ -871,7 +871,7 @@ a:active {
   gap: 1rem;
 }
 .oc {
-  width: 150px;
+  width: 165px;
   height: 150px;
   position: absolute;
   top: 50%;
@@ -890,15 +890,57 @@ a:active {
 .wo-t {
   margin-top: 3.5rem;
   font-size: 2.4rem;
-  columns: #0a0a0a;
+  color: #0a0a0a;
 }
 .wl {
   text-align: center;
 }
 .whatsapp-text {
   display: block;
-  margin-left: 45px;
+  margin-left: 57px;
 }
 .hidden {
   display: none;
+}
+.blankDiv {
+  background-color: #f7f5f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.blankDiv-footer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.6rem;
+  color: #00000099;
+  margin-top: 12rem;
+}
+.picture {
+  margin-top: 25rem;
+}
+.blankDiv-header {
+  font-size: 3.6rem;
+  color: #0a0a0a;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.blankDiv-text {
+  font-size: 1.6rem;
+  width: 52.47rem;
+  text-align: center;
+  color: #0a0a0a;
+}
+.download-whatsapp {
+  width: 11.4rem;
+  height: 3.7rem;
+  background-color: #1daa61;
+  margin-top: 1rem;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #ffffff;
+  border-radius: 20px;
 }
