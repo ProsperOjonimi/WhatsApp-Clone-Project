@@ -17,7 +17,7 @@ class ChatList {
         } else if (renderedMessageArr === obj.msgSent && obj.seen === true) {
           return '<ion-icon name="checkmark-done-outline" class="checkmark-icon checkmark-icon_blue"></ion-icon>';
         } else {
-          return;
+          return "";
         }
       };
       const html = `
