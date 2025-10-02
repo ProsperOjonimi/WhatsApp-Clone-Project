@@ -7,6 +7,7 @@ const addNewBtn = document.querySelector(".new-chat");
 const addChatsContainer = document.querySelector(".add-chats");
 const addChatsBack = document.querySelector(".btn_add-chats-back");
 const messages = document.querySelector(".socials-icon_messages");
+
 class AddChats {
   constructor() {
     addNewBtn.addEventListener("click", this.showAddChatContainer.bind(this));
@@ -77,6 +78,21 @@ class ChatList {
     
     `;
       chatListContainer.insertAdjacentHTML("beforeend", html);
+    });
+  }
+  renderChatsOnInterface(arr, data) {
+    const chatProperArr = Array.from(arr);
+    chatProperArr.forEach((l, i) => {
+      l.addEventListener("click", function () {
+        if (data[i].msgSent.length === 0) {
+          const blankDiv = document.querySelector(".blankDiv");
+          const chatInterface = document.querySelector(".chat-interface");
+          blankDiv.style.display = "none";
+          chatInterface.classList.remove("hidden");
+        } else {
+          return;
+        }
+      });
     });
   }
 }

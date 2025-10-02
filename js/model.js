@@ -34,7 +34,6 @@ export const chats = [
     timeOfLastChat: "10:34",
     seen: true,
   },
-  ,
   {
     chatName: "Josiah Frank",
     msgSent: [],
