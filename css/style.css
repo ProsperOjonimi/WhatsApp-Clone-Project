@@ -944,3 +944,59 @@ a:active {
   color: #ffffff;
   border-radius: 20px;
 }
+.add-chats {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.add-chats_header {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  padding-left: 2rem;
+  padding-top: 2.8rem;
+  font-size: 1.6rem;
+}
+.new-group,
+.new-contact,
+.new-community {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  /* padding-left: 5rem; */
+  font-size: 1.8rem;
+}
+.c {
+  background-color: #1daa61;
+  border-radius: 50%;
+  padding: 1.55rem;
+}
+.chat-p {
+  color: #0a0a0a;
+}
+.contacts-p {
+  font-size: 2rem;
+  margin-top: 2rem;
+  padding-left: 5rem;
+  color: #00000099;
+}
+.new-contact-link,
+.new-community-link,
+.new-group-link {
+  cursor: pointer;
+  display: inline-block;
+  width: 90%;
+  margin: 0 3rem;
+  padding-left: 1rem;
+  border-radius: 11px;
+}
+
+.new-contact-link:hover,
+.new-contact-link:active,
+.new-community-link:hover,
+.new-community-link:active,
+.new-group-link:hover,
+.new-group-link:active {
+  background-color: #f6f5f3;
+}
