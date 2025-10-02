@@ -1,4 +1,3 @@
-"use strict";
 const initialBackground = document.querySelector(".whatsapp-open");
 const inputBar = document.querySelector(".search-space");
 const searchBar = document.querySelector(".chat-list_search-bar");
@@ -23,9 +22,8 @@ class App {
   init() {
     setTimeout(() => {
       initialBackground.classList.add("hidden");
-    }, 1500);
+    }, 2000);
   }
 }
 
-const app = new App();
-app.init();
+export const app = new App();
