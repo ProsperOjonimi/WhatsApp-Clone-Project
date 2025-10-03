@@ -15,7 +15,31 @@ export const initializeApp = function () {
   chatList.renderMarkup(chats);
   const chatProper = document.querySelectorAll(".chat-list-link");
 
-  chatList.renderChatsOnInterface(chatProper, chats);
+  const renderSendButton = function () {
+    chatList.renderChatsOnInterface(chatProper, chats);
+    const messageSpace = document.querySelector(".message-space");
+    const sendButton = document.querySelector(".send-button");
+    const voiceRecord = document.querySelector(".voice-recording-icon");
+    console.log(messageSpace);
+    messageSpace.addEventListener("input", function () {
+      sendButton.classList.remove("hidden");
+      voiceRecord.classList.add("hidden");
+      if (messageSpace.value.trim() === "") {
+        sendButton.classList.add("hidden");
+        voiceRecord.classList.remove("hidden");
+      }
+    });
+    sendButton?.addEventListener("click", function () {
+      const message = messageSpace.value.trim();
+      messageSpace.value = "";
+      if (messageSpace.value.trim() === "") {
+        sendButton.classList.add("hidden");
+        voiceRecord.classList.remove("hidden");
+      }
+      chatList.renderMessage(message);
+    });
+  };
+  renderSendButton();
 };
 export const updateState = function (chatData) {
   chatList.clearContainer();
@@ -68,5 +92,13 @@ const allChats = function () {
 };
 
 inputBar.addEventListener("input", chatList.filterSearch);
+
+// console.log(messageSpace);
+// messageSpace.addEventListener("input", function () {
+//   console.log(sendButton);
+//   console.log(voiceRecord);
+//   sendButton.classList.remove("hidden");
+//   voiceRecord.classList.add("hidden");
+// });
 allChats();
 initializeApp();
