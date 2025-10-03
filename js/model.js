@@ -1,4 +1,4 @@
-export const chats = [
+export let chats = [
   {
     chatName: "John 200L MBBS",
     msgSent: [],
@@ -77,3 +77,7 @@ export const chats = [
     seen: false,
   },
 ];
+
+export const setArray = function (newArray) {
+  chats = newArray;
+};

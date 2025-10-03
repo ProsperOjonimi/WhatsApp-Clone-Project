@@ -33,6 +33,7 @@ a:active {
 .chat-list-link:hover,
 .chat-list-link:active {
   background-color: #f6f5f3;
+  cursor: pointer;
 }
 
 .container {

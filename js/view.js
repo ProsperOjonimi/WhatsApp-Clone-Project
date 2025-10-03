@@ -33,12 +33,48 @@ class AddChats {
 }
 class ChatList {
   constructor() {
-    this.clearContainer();
+    // this.clearContainer();
   }
   clearContainer() {
     chatListContainer.innerHTML = "";
   }
+  renderUnreadChats(datas) {
+    this.clearContainer();
+
+    const unreadChats = datas.filter(
+      (c) => c.msgSent.length === 0 && c.seen === false
+    );
+
+    datas = unreadChats;
+    console.log(unreadChats, datas);
+
+    datas.forEach((c) => {
+      const html2 = `
+    <a  class="chat-list-link">
+          <div class="chat-list_proper">
+            <div class="message-profile-img">
+              <ion-icon name="person" class="person-icon"></ion-icon>
+            </div>
+          <div class="message-description">
+              <p class="person-name">${c.chatName}</p>
+              <p class="person-text">${c.msgRecieved[0]}</p>
+
+          </div>
+          <div class="message-information">
+            <p class="message-time">${c.timeOfLastChat}</p>
+          <div class="message-no" >${c.msgRecieved.length}</div>
+          </div>
+
+          </div>
+          </a>
+    
+    `;
+      console.log(c.msgRecieved.length);
+      chatListContainer.insertAdjacentHTML("beforeend", html2);
+    });
+  }
   renderMarkup(chats) {
+    this.clearContainer();
     chats.forEach((obj) => {
       const renderedMessageArr =
         obj.msgRecieved.length === 0 ? obj.msgSent : obj.msgRecieved;
