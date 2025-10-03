@@ -24,10 +24,14 @@ a:hover,
 a:active {
   color: #e7e6e4;
 }
+.chat-list-link {
+  display: inline-block;
+}
 
 .chat-list-link:link,
 .chat-list-link:visited {
   cursor: pointer;
+
   text-decoration: none;
 }
 .chat-list-link:hover,

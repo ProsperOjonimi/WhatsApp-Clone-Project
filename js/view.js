@@ -1,8 +1,8 @@
 import { initializeApp } from "./controller.js";
-import { updateState } from "./controller.js";
+import { chats } from "./model.js";
 
 const initialBackground = document.querySelector(".whatsapp-open");
-const inputBar = document.querySelector(".search-space");
+export const inputBar = document.querySelector(".search-space");
 const searchBar = document.querySelector(".chat-list_search-bar");
 const chatContainer = document.querySelector(".chat-list");
 const chatListContainer = document.querySelector(".chat-list_chats");
@@ -10,6 +10,8 @@ const addNewBtn = document.querySelector(".new-chat");
 const addChatsContainer = document.querySelector(".add-chats");
 const addChatsBack = document.querySelector(".btn_add-chats-back");
 const messages = document.querySelector(".socials-icon_messages");
+export const allBtn = document.querySelector(".state-all");
+export const unreadBtn = document.querySelector(".state-unread");
 
 class AddChats {
   constructor() {
@@ -35,8 +37,41 @@ class ChatList {
   constructor() {
     // this.clearContainer();
   }
+  filterSearch() {
+    const chatListLink = document.querySelectorAll(".chat-list-link");
+    const input = inputBar.value.toLowerCase();
+    chatListLink.forEach((c) => {
+      // console.log(c);
+      console.log(input);
+      console.log(
+        c.querySelector(".person-name").innerHTML.toLowerCase().includes(input)
+      );
+      if (
+        c.querySelector(".person-name").innerHTML.toLowerCase().includes(input)
+      ) {
+        console.log(c, "I will show");
+        c.style.display = "inline-block";
+      } else {
+        console.log(c, "Nope");
+        c.style.display = "none";
+      }
+    });
+  }
   clearContainer() {
     chatListContainer.innerHTML = "";
+  }
+  toggleUnreadActive() {
+    unreadBtn.style.backgroundColor = "#d7fbd3";
+    unreadBtn.style.color = " #658e6c";
+    allBtn.style.backgroundColor = "#FFFFFF";
+    allBtn.style.color = "#615f62";
+  }
+  toggleAll() {
+    unreadBtn.style.backgroundColor = "#FFFFFF";
+    unreadBtn.style.color = " #615f62 ";
+
+    allBtn.style.backgroundColor = "#d7fbd3";
+    allBtn.style.color = "#658e6c";
   }
   renderUnreadChats(datas) {
     this.clearContainer();
@@ -44,13 +79,15 @@ class ChatList {
     const unreadChats = datas.filter(
       (c) => c.msgSent.length === 0 && c.seen === false
     );
+    // unreadChats.forEach((c) => {
+    //   const id = c.id;
+    //   datas[id].seen = c.seen;
+    // });
+    console.log(datas, unreadChats);
 
-    datas = unreadChats;
-    console.log(unreadChats, datas);
-
-    datas.forEach((c) => {
+    unreadChats.forEach((c) => {
       const html2 = `
-    <a  class="chat-list-link">
+    <a  class="chat-list-link "data-id=${c.id}>
           <div class="chat-list_proper">
             <div class="message-profile-img">
               <ion-icon name="person" class="person-icon"></ion-icon>
@@ -88,7 +125,7 @@ class ChatList {
         }
       };
       const html = `
-    <a  class="chat-list-link">
+    <a  class="chat-list-link " data-id=${obj.id}>
           <div class="chat-list_proper">
             <div class="message-profile-img">
               <ion-icon name="person" class="person-icon"></ion-icon>
@@ -122,13 +159,16 @@ class ChatList {
       chatListContainer.insertAdjacentHTML("beforeend", html);
     });
   }
+  updateState(data) {}
   renderChatsOnInterface(arr, data) {
     const chatProperArr = Array.from(arr);
     chatProperArr.forEach((l, i) => {
       l.addEventListener("click", function () {
+        console.log(i);
         data[i].seen = true;
         console.log(data[i].seen);
-        updateState(data);
+        // updateState(data);
+        console.log(data, chats);
 
         if (data[i].msgSent.length === 0) {
           const blankDiv = document.querySelector(".blankDiv");

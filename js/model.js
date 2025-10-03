@@ -5,6 +5,7 @@ export let chats = [
     msgRecieved: ["alright thank you very much"],
     timeOfLastChat: "17:00",
     seen: false,
+    id: 0,
   },
   {
     chatName: "Eniola 2",
@@ -12,6 +13,7 @@ export let chats = [
     msgRecieved: ["That's a good idea. Will do"],
     timeOfLastChat: "16:50",
     seen: false,
+    id: 1,
   },
   {
     chatName: "Mercy",
@@ -19,6 +21,7 @@ export let chats = [
     msgRecieved: ["Okay Okay 😂"],
     timeOfLastChat: "16:50",
     seen: true,
+    id: 2,
   },
   {
     chatName: "Shaydee Coder",
@@ -26,6 +29,7 @@ export let chats = [
     msgRecieved: [],
     timeOfLastChat: "11:07",
     seen: false,
+    id: 3,
   },
   {
     chatName: "Ojonimi",
@@ -33,6 +37,7 @@ export let chats = [
     msgRecieved: [],
     timeOfLastChat: "10:34",
     seen: true,
+    id: 4,
   },
   {
     chatName: "Josiah Frank",
@@ -40,6 +45,7 @@ export let chats = [
     msgRecieved: ["Yh"],
     timeOfLastChat: "9:20",
     seen: true,
+    id: 5,
   },
   {
     chatName: "Sis",
@@ -47,6 +53,7 @@ export let chats = [
     msgRecieved: [],
     timeOfLastChat: "8:50",
     seen: true,
+    id: 6,
   },
   {
     chatName: "Unana",
@@ -54,6 +61,7 @@ export let chats = [
     msgRecieved: ["Yeah"],
     timeOfLastChat: "8:32",
     seen: false,
+    id: 7,
   },
   {
     chatName: "Francis S",
@@ -61,6 +69,7 @@ export let chats = [
     msgRecieved: ["Thanks bro 😭 😭"],
     timeOfLastChat: "8:00",
     seen: false,
+    id: 8,
   },
   {
     chatName: "Adedapo 200L MBBS",
@@ -68,6 +77,7 @@ export let chats = [
     msgRecieved: ["Alright then 👌"],
     timeOfLastChat: "7:20",
     seen: false,
+    id: 9,
   },
   {
     chatName: "Emmanuella",
@@ -75,9 +85,6 @@ export let chats = [
     msgRecieved: [],
     timeOfLastChat: "4:45",
     seen: false,
+    id: 10,
   },
 ];
-
-export const setArray = function (newArray) {
-  chats = newArray;
-};
