@@ -20,6 +20,7 @@ export const initializeApp = function () {
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
   chatList.renderMarkup(storedChatsInfo);
+  app.darkMode();
   const chatProper = document.querySelectorAll(".chat-list-link");
 
   const renderSendButton = function () {

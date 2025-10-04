@@ -2,6 +2,9 @@ import { initializeApp } from "./controller.js";
 import { chats } from "./model.js";
 
 const initialBackground = document.querySelector(".whatsapp-open");
+const sideBarSocials = document.querySelector(".side-bar_socials");
+const sideBar = document.querySelector(".side-bar");
+const sideBarFunc = document.querySelector(".side-bar_functional");
 export const inputBar = document.querySelector(".search-space");
 const searchBar = document.querySelector(".chat-list_search-bar");
 const chatContainer = document.querySelector(".chat-list");
@@ -10,6 +13,18 @@ const addNewBtn = document.querySelector(".new-chat");
 const addChatsContainer = document.querySelector(".add-chats");
 const addChatsBack = document.querySelector(".btn_add-chats-back");
 const messages = document.querySelector(".socials-icon_messages");
+const whatsappHeader = document.querySelector(".xgz6z4f");
+const messageIcon = document.querySelector(".message-icon");
+const statusIcon = document.querySelectorAll(".status-icon");
+const channelsIcon = document.querySelectorAll(".channels-icon");
+const communityIcon = document.querySelectorAll(".community-icon");
+const settingsIcon = document.querySelectorAll(".settings-icon");
+const stateUnread = document.querySelector(".state-unread");
+const stateFav = document.querySelector(".state-favorites");
+const stategroups = document.querySelector(".state-groups");
+const addIcon = document.querySelectorAll(".add-icon");
+const moreIcon = document.querySelector(".more-icon");
+
 export const allBtn = document.querySelector(".state-all");
 export const unreadBtn = document.querySelector(".state-unread");
 
@@ -528,12 +543,80 @@ class App {
     searchBar.style.backgroundColor = "#f6f5f3";
     searchBar.style.border = "none";
   }
+  darkMode() {
+    const personIcon = document.querySelectorAll(".message-profile-img");
+    const chatListLink = document.querySelectorAll(".chat-list-link");
+    const chatInterfaceHeader = document.querySelector(
+      ".chat-interface_header"
+    );
+    const personProfileImg = document.querySelector(".person-profile-img");
+
+    chatContainer.style.backgroundColor = " #161717";
+    sideBarSocials.style.backgroundColor = "#1D1F1F";
+    sideBarSocials.style.borderBottom = "1px solid #2E2F2F";
+    whatsappHeader.setAttribute("fill", "#FFFFFF");
+    messageIcon.setAttribute("fill", "#FFFFFF");
+    statusIcon.forEach((i) => {
+      i.setAttribute("fill", "#A9AAAA");
+    });
+    channelsIcon.forEach((i) => {
+      i.setAttribute("fill", "#A9AAAA");
+    });
+    communityIcon.forEach((i) => {
+      i.setAttribute("fill", "#A9AAAA");
+    });
+    settingsIcon.forEach((i) => {
+      i.setAttribute("fill", "#A9AAAA");
+    });
+    sideBar.style.backgroundColor = "#1D1F1F";
+    sideBarFunc.backgroundColor = "#1D1F1F";
+    inputBar.style.backgroundColor = "#2E2F2F";
+    inputBar.style.color = "#ABACAC";
+    searchBar.style.backgroundColor = "#2E2F2F";
+    allBtn.style.backgroundColor = "#103529";
+    allBtn.style.border = "1px solid #2d453eff";
+    allBtn.style.color = "#D9FDD3";
+    [stateUnread, stateFav, stategroups].forEach((b) => {
+      b.style.color = "#abacac";
+      b.style.border = "1px solid #404141";
+      addIcon.forEach((i) => {
+        i.setAttribute("fill", "#ffffff");
+      });
+      moreIcon.setAttribute("fill", "#ffffff");
+    });
+    const chatName = document.querySelectorAll(".person-name");
+    console.log(chatName);
+    chatName.forEach((i) => {
+      i.style.setProperty("color", "#FFFFFF", "important");
+    });
+
+    console.log(personIcon);
+    personIcon.forEach((i) => {
+      i.style.backgroundColor = "#242626";
+      i.style.border = "0.1px solid #3b3c3cff";
+    });
+    chatListLink.forEach((l) => {
+      l.addEventListener("mouseenter", function () {
+        l.style.backgroundColor = "#2E2F2F";
+      });
+    });
+    chatListLink.forEach((l) => {
+      l.addEventListener("mouseleave", function () {
+        l.style.backgroundColor = "#161717";
+      });
+    });
+    chatInterfaceHeader.style.backgroundColor = "#161717";
+    personProfileImg.style.backgroundColor = "#242626";
+    personProfileImg.style.border = "1px solid #3b3c3cff";
+  }
+  // #2E2F2F
   init() {
     setTimeout(() => {
       initialBackground.classList.add("hidden");
     }, 2000);
   }
 }
+// #21c063
 
 export const app = new App();
 export const chatList = new ChatList();

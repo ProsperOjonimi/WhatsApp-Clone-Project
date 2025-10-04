@@ -68,7 +68,7 @@ a:active {
   gap: 1.5rem;
   flex-direction: column;
   align-items: center;
-  background-color: #f6f5f3;
+  /* background-color: #f6f5f3; */
   position: relative;
 }
 
@@ -138,7 +138,7 @@ a:active {
   align-items: center;
   padding-top: 1rem;
   justify-content: space-between;
-  background-color: #f6f5f3;
+  /* background-color: #f6f5f3; */
 }
 .side-bar_functional div:nth-child(2) {
   width: 5rem;
@@ -230,7 +230,7 @@ a:active {
 .search-space::placeholder {
   font-weight: 540;
   letter-spacing: 0.5px;
-  color: #615f62;
+  color: #abacac;
 }
 .search-icon {
   height: 2rem;
@@ -280,7 +280,7 @@ a:active {
 
 .chat-list_chats::-webkit-scrollbar-track,
 .chat-interface_chats::-webkit-scrollbar-track {
-  background: #f1f1f1; /* track color */
+  background: #999999; /* track color */
   border-radius: 10px;
 }
 .chat-list_chats::-webkit-scrollbar-thumb,
