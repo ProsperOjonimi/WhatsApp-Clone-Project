@@ -8,15 +8,22 @@ import { inputBar } from "./view.js";
 import { allBtn, unreadBtn } from "./view.js";
 // import { chatClone } from "./model.js";
 
+if (!localStorage.getItem("chats")) {
+  localStorage.setItem("chats", JSON.stringify(chats));
+}
+const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
+console.log(storedChatsInfo);
+
 export const initializeApp = function () {
   app.init();
+
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
-  chatList.renderMarkup(chats);
+  chatList.renderMarkup(storedChatsInfo);
   const chatProper = document.querySelectorAll(".chat-list-link");
 
   const renderSendButton = function () {
-    chatList.renderChatsOnInterface(chatProper, chats);
+    chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
     const messageSpace = document.querySelector(".message-space");
     const sendButton = document.querySelector(".send-button");
     const voiceRecord = document.querySelector(".voice-recording-icon");
@@ -30,23 +37,37 @@ export const initializeApp = function () {
       }
     });
     sendButton?.addEventListener("click", function () {
+      console.log(sendButton);
+      const id = +sendButton.dataset.id;
       const message = messageSpace.value.trim();
       messageSpace.value = "";
       if (messageSpace.value.trim() === "") {
         sendButton.classList.add("hidden");
         voiceRecord.classList.remove("hidden");
       }
-      chatList.renderMessage(message);
+      chatList.showMessage(
+        message,
+        storedChatsInfo[id].msgSent,
+        storedChatsInfo,
+        id
+      );
+
+      console.log(chats);
+      const chatProper = document.querySelectorAll(".chat-list-link");
+      chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
+      chatList.renderMarkup(storedChatsInfo);
+      initializeApp();
     });
   };
+
   renderSendButton();
 };
-export const updateState = function (chatData) {
-  chatList.clearContainer();
-  chatData = chats;
+// export const updateState = function (chatData) {
+//   chatList.clearContainer();
+//   chatData = chats;
 
-  // chatList.renderMarkup(chats);
-};
+//   // chatList.renderMarkup(chats);
+// };
 
 const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
@@ -66,7 +87,7 @@ const updateUnreadChats = function (data) {
     // });
   });
 };
-updateUnreadChats(chats);
+updateUnreadChats(storedChatsInfo);
 
 const allChats = function () {
   allBtn.addEventListener("click", function () {
@@ -85,9 +106,9 @@ const allChats = function () {
     // });
     // console.log(chatClone);
     // restoreChats(chatClone);
-    chatList.renderMarkup(chats);
+    chatList.renderMarkup(storedChatsInfo);
     const chatProper = document.querySelectorAll(".chat-list-link");
-    chatList.renderChatsOnInterface(chatProper, chats);
+    chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   });
 };
 
@@ -102,3 +123,4 @@ inputBar.addEventListener("input", chatList.filterSearch);
 // });
 allChats();
 initializeApp();
+// localStorage.setItem("chats", JSON.stringify(chats));

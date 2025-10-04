@@ -724,6 +724,10 @@ a:active {
   gap: 0.7rem;
 }
 .chat-box-two div p span {
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 1.3rem;
 }
 .chat-box-two div p {

@@ -6,6 +6,7 @@ export let chats = [
     timeOfLastChat: "17:00",
     seen: false,
     id: 0,
+    sentMessages: [],
   },
   {
     chatName: "Eniola 2",
@@ -14,6 +15,7 @@ export let chats = [
     timeOfLastChat: "16:50",
     seen: false,
     id: 1,
+    sentMessages: [],
   },
   {
     chatName: "Mercy",
@@ -22,6 +24,7 @@ export let chats = [
     timeOfLastChat: "16:50",
     seen: true,
     id: 2,
+    sentMessages: [],
   },
   {
     chatName: "Shaydee Coder",
@@ -30,6 +33,7 @@ export let chats = [
     timeOfLastChat: "11:07",
     seen: false,
     id: 3,
+    sentMessages: [],
   },
   {
     chatName: "Ojonimi",
@@ -38,6 +42,7 @@ export let chats = [
     timeOfLastChat: "10:34",
     seen: true,
     id: 4,
+    sentMessages: [],
   },
   {
     chatName: "Josiah Frank",
@@ -46,6 +51,7 @@ export let chats = [
     timeOfLastChat: "9:20",
     seen: true,
     id: 5,
+    sentMessages: [],
   },
   {
     chatName: "Sis",
@@ -54,6 +60,7 @@ export let chats = [
     timeOfLastChat: "8:50",
     seen: true,
     id: 6,
+    sentMessages: [],
   },
   {
     chatName: "Unana",
@@ -62,6 +69,7 @@ export let chats = [
     timeOfLastChat: "8:32",
     seen: false,
     id: 7,
+    sentMessages: [],
   },
   {
     chatName: "Francis S",
@@ -70,6 +78,7 @@ export let chats = [
     timeOfLastChat: "8:00",
     seen: false,
     id: 8,
+    sentMessages: [],
   },
   {
     chatName: "Adedapo 200L MBBS",
@@ -78,6 +87,7 @@ export let chats = [
     timeOfLastChat: "7:20",
     seen: false,
     id: 9,
+    sentMessages: [],
   },
   {
     chatName: "Emmanuella",
@@ -86,5 +96,30 @@ export let chats = [
     timeOfLastChat: "4:45",
     seen: false,
     id: 10,
+    sentMessages: [],
   },
 ];
+
+// if (data[i].sentMessages.length > 0) {
+//             data[i].sentMessages.forEach((c) => {
+//               const now = new Date();
+//               const hour = now.getHours(); // 0–59
+//               const minutes = now.getMinutes(); // 0–59
+
+//               const timeOfSend = `${hour}:${minutes}`;
+//               const chatBoxTwo = document.querySelector(".chat-box-two");
+//               console.log(c);
+//               console.log(chatBoxTwo);
+
+//               const html = `
+//     <div class="message-tag-d">
+//               <p>${c}
+//                  <span>
+// ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>
+//               </span></p>
+//             </div>
+//     `;
+//               chatBoxTwo.insertAdjacentHTML('beforeend', html)
+//             });
+
+//         };
