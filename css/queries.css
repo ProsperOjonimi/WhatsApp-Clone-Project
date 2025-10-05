@@ -1,6 +1,6 @@
 /* For small desktops, 1350px or less */
 
-@media (max-width: 84em) {
+/* @media (max-width: 84em) {
   html {
     font-size: 50%;
   }
@@ -47,5 +47,117 @@
     height: 100%;
     border: none;
     font-size: 8px;
+  }
+}
+@media (max-width: 72em) {
+  .chat-interface_message-bar {
+    gap: 3.5rem;
+  }
+}
+@media (max-width: 60.75em) {
+  .chat-interface_message-bar {
+    gap: 4rem;
+  }
+}
+@media (max-width: 63em) {
+  html {
+    font-size: 40%;
+  }
+} */
+@media (max-width: 68.75em) {
+  .container {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    /* overflow: hidden; */
+    overflow-y: hidden;
+    grid-template-columns: 6rem 40rem 1fr;
+  }
+}
+@media (max-width: 52.125em) {
+  .container {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    /* overflow: hidden; */
+    overflow-y: hidden;
+    grid-template-columns: 6rem 40rem 37rem;
+  }
+}
+@media (max-width: 60.5625em) {
+  .blankDiv-text {
+    font-size: 1.6rem;
+    width: 40rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0a0a0a;
+    text-align: center;
+  }
+  .lock-icon {
+    display: inline-block;
+    display: flex;
+    padding-bottom: 0rem;
+  }
+}
+@media (max-width: 54.5em) {
+  .blankDiv-header {
+    font-size: 3.6rem;
+    color: #0a0a0a;
+    margin-top: 1rem;
+    width: 35rem;
+
+    font-weight: 100;
+  }
+  .blankDiv-text {
+    font-size: 1.6rem;
+    width: 30rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0a0a0a;
+    text-align: center;
+  }
+  .lock-icon {
+    display: inline-block;
+    display: flex;
+    padding-bottom: 0rem;
+  }
+}
+@media (max-width: 52em) {
+  .lock-icon {
+    display: inline-block;
+    display: flex;
+    padding-bottom: 1.5rem;
+  }
+}
+@media (height>43.75em) {
+  .picture {
+    margin-top: 20rem;
+  }
+  .blankDiv-footer {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: 1;
+    gap: 0rem;
+    font-size: 1.6rem;
+    color: #00000099;
+    margin-top: 4rem;
+    padding-top: 4rem;
+  }
+}
+@media (height>49em) {
+  .picture {
+    margin-top: 20rem;
+  }
+  .blankDiv-footer {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: 1;
+    gap: 0rem;
+    font-size: 1.6rem;
+    color: #00000099;
+    margin-top: 15rem;
+    padding-top: 4rem;
   }
 }

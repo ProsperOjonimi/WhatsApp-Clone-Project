@@ -4,6 +4,7 @@ import { chatList } from "./view.js";
 import { chats } from "./model.js";
 import { addChats } from "./view.js";
 import { inputBar } from "./view.js";
+import { unreadMessages } from "./view.js";
 // import { setArray, restoreChats } from "./model.js";
 import { allBtn, unreadBtn } from "./view.js";
 // import { chatClone } from "./model.js";
@@ -20,8 +21,13 @@ export const initializeApp = function () {
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
   chatList.renderMarkup(storedChatsInfo);
-  app.darkMode();
+  // app.darkMode();
   const chatProper = document.querySelectorAll(".chat-list-link");
+  const noOfUnreadMessages = storedChatsInfo.filter(
+    (d) => d.seen === false && d.msgRecieved.length > 0
+  ).length;
+  unreadMessages.querySelector("span").textContent = noOfUnreadMessages;
+  if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
   const renderSendButton = function () {
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
@@ -57,7 +63,9 @@ export const initializeApp = function () {
       const chatProper = document.querySelectorAll(".chat-list-link");
       chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
       chatList.renderMarkup(storedChatsInfo);
-      initializeApp();
+      // app.darkMode();
+
+      // initializeApp();
     });
   };
 
