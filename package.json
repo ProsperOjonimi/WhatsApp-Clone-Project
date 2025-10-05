@@ -1,0 +1,27 @@
+{
+  "name": "whatsapp-clone-project",
+  "version": "1.0.0",
+  "description": "a clone of WhatsApp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProsperOjonimi/WhatsApp-Clone-Project.git"
+  },
+  "author": "Joseph Prosper Ojonimi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProsperOjonimi/WhatsApp-Clone-Project/issues"
+  },
+  "homepage": "https://github.com/ProsperOjonimi/WhatsApp-Clone-Project#readme",
+  "dependencies": {
+    "parcel": "^2.16.0"
+  },
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.16.0",
+    "@parcel/transformer-webmanifest": "^2.16.0"
+  }
+}
