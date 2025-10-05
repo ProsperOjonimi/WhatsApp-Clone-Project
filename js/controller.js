@@ -23,6 +23,7 @@ export const initializeApp = function () {
   chatList.renderMarkup(storedChatsInfo);
   // app.darkMode();
   const chatProper = document.querySelectorAll(".chat-list-link");
+  chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   const noOfUnreadMessages = storedChatsInfo.filter(
     (d) => d.seen === false && d.msgRecieved.length > 0
   ).length;
@@ -30,7 +31,6 @@ export const initializeApp = function () {
   if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
   const renderSendButton = function () {
-    chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
     const messageSpace = document.querySelector(".message-space");
     const sendButton = document.querySelector(".send-button");
     const voiceRecord = document.querySelector(".voice-recording-icon");
@@ -60,12 +60,11 @@ export const initializeApp = function () {
       );
 
       console.log(chats);
+      chatList.renderMarkup(storedChatsInfo);
       const chatProper = document.querySelectorAll(".chat-list-link");
       chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
-      chatList.renderMarkup(storedChatsInfo);
-      // app.darkMode();
 
-      // initializeApp();
+      // app.darkMode();
     });
   };
 

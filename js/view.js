@@ -214,6 +214,7 @@ class ChatList {
     const now = new Date();
     const hour = now.getHours(); // 0–59
     const minutes = now.getMinutes(); // 0–59
+    console.log(message);
     arr.push(message);
     localStorage.setItem("chats", JSON.stringify(data));
 
