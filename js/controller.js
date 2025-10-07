@@ -5,15 +5,17 @@ import { chats } from "./model.js";
 import { addChats } from "./view.js";
 import { inputBar } from "./view.js";
 import { unreadMessages } from "./view.js";
-// import { setArray, restoreChats } from "./model.js";
 import { allBtn, unreadBtn } from "./view.js";
-// import { chatClone } from "./model.js";
 
 if (!localStorage.getItem("chats")) {
   localStorage.setItem("chats", JSON.stringify(chats));
 }
-const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
+export let storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
 console.log(storedChatsInfo);
+
+export const setData = function (newData) {
+  storedChatsInfo = newData;
+};
 
 export const initializeApp = function () {
   app.init();
@@ -21,13 +23,12 @@ export const initializeApp = function () {
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
   chatList.renderMarkup(storedChatsInfo);
-  // app.darkMode();
   const chatProper = document.querySelectorAll(".chat-list-link");
   chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   const noOfUnreadMessages = storedChatsInfo.filter(
-    (d) => d.seen === false && d.msgRecieved.length > 0
+    (d) => d.unread === true
   ).length;
-  unreadMessages.querySelector("span").textContent = noOfUnreadMessages;
+  unreadMessages.textContent = noOfUnreadMessages;
   if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
   const renderSendButton = function () {
@@ -63,36 +64,15 @@ export const initializeApp = function () {
       chatList.renderMarkup(storedChatsInfo);
       const chatProper = document.querySelectorAll(".chat-list-link");
       chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
-
-      // app.darkMode();
     });
   };
 
   renderSendButton();
 };
-// export const updateState = function (chatData) {
-//   chatList.clearContainer();
-//   chatData = chats;
-
-//   // chatList.renderMarkup(chats);
-// };
-
 const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
     chatList.toggleUnreadActive();
     chatList.renderUnreadChats(data);
-    const chatProper = document.querySelectorAll(".chat-list-link");
-
-    // setArray(unreadChats);
-    // chatList.renderChatsOnInterface(chatProper, data);
-    // chatProper.forEach((c, i) => {
-    //   c.addEventListener("click", function () {
-    //     console.log(c, +c.dataset.id);
-
-    //     chats[c.dataset.id].seen = true;
-    //     console.log(chats);
-    //   });
-    // });
   });
 };
 updateUnreadChats(storedChatsInfo);
@@ -100,20 +80,9 @@ updateUnreadChats(storedChatsInfo);
 const allChats = function () {
   allBtn.addEventListener("click", function () {
     chatList.clearContainer();
+    // setData(chats);
     chatList.toggleAll();
-    // const readChats = chatClone.filter((c) => c.seen === true);
-    // console.log(readChats);
-    // const updatedChat = [...chats, ...readChats];
-    // console.log(updatedChat);
-    // // restoreChats(updatedChat);
-    // console.log(chats);
     console.log(chats);
-    // chats.forEach((c) => {
-    //   const id = c.id;
-    //   chatClone[id].seen = c.seen;
-    // });
-    // console.log(chatClone);
-    // restoreChats(chatClone);
     chatList.renderMarkup(storedChatsInfo);
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
@@ -121,14 +90,5 @@ const allChats = function () {
 };
 
 inputBar.addEventListener("input", chatList.filterSearch);
-
-// console.log(messageSpace);
-// messageSpace.addEventListener("input", function () {
-//   console.log(sendButton);
-//   console.log(voiceRecord);
-//   sendButton.classList.remove("hidden");
-//   voiceRecord.classList.add("hidden");
-// });
 allChats();
 initializeApp();
-// localStorage.setItem("chats", JSON.stringify(chats));

@@ -3,168 +3,240 @@ export let chats = [
     chatName: "Stephanie🌹",
     msgSent: [],
     msgRecieved: ["Heyy"],
-    timeOfLastChat: "17:00",
+    chatTime: [
+      {
+        timeOfLastChatHour: 17,
+        timeOfLastChatMins: 0,
+        timeOfLastChatSec: 16,
+      },
+    ],
     seen: false,
     id: 0,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Eniola 2",
     msgSent: [],
     msgRecieved: ["That's a good idea. Will do"],
-    timeOfLastChat: "16:50",
+    chatTime: [
+      {
+        timeOfLastChatHour: 16,
+        timeOfLastChatMins: 50,
+        timeOfLastChatSec: 22,
+      },
+    ],
     seen: false,
     id: 1,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Mercy",
     msgSent: [],
     msgRecieved: ["Okay Okay 😂"],
-    timeOfLastChat: "16:50",
+    chatTime: [
+      {
+        timeOfLastChatHour: 15,
+        timeOfLastChatMins: 30,
+        timeOfLastChatSec: 39,
+      },
+    ],
     seen: true,
     id: 2,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Shaydee Coder",
     msgSent: ["Alright, thanks"],
     msgRecieved: [],
-    timeOfLastChat: "11:07",
+    chatTime: [
+      {
+        timeOfLastChatHour: 11,
+        timeOfLastChatMins: 7,
+        timeOfLastChatSec: 42,
+      },
+    ],
     seen: false,
     id: 3,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Japheth",
     msgSent: ["Brooo"],
     msgRecieved: [],
-    timeOfLastChat: "10:34",
+    chatTime: [
+      {
+        timeOfLastChatHour: 10,
+        timeOfLastChatMins: 34,
+        timeOfLastChatSec: 25,
+      },
+    ],
     seen: true,
     id: 4,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Josiah Frank",
     msgSent: [],
     msgRecieved: ["Yh"],
-    timeOfLastChat: "9:20",
+    chatTime: [
+      {
+        timeOfLastChatHour: 9,
+        timeOfLastChatMins: 20,
+        timeOfLastChatSec: 19,
+      },
+    ],
     seen: true,
     id: 5,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Sis",
     msgSent: ["Alright, no problem"],
     msgRecieved: [],
-    timeOfLastChat: "8:50",
+    chatTime: [
+      {
+        timeOfLastChatHour: 8,
+        timeOfLastChatMins: 50,
+        timeOfLastChatSec: 12,
+      },
+    ],
     seen: true,
     id: 6,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Unana",
     msgSent: [],
     msgRecieved: ["Yeah"],
-    timeOfLastChat: "8:32",
+    chatTime: [
+      {
+        timeOfLastChatHour: 8,
+        timeOfLastChatMins: 32,
+        timeOfLastChatSec: 25,
+      },
+    ],
     seen: false,
     id: 7,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Micheal",
     msgSent: [],
     msgRecieved: ["Hwfr na"],
-    timeOfLastChat: "8:00",
+    chatTime: [
+      {
+        timeOfLastChatHour: 8,
+        timeOfLastChatMins: 0,
+        timeOfLastChatSec: 29,
+      },
+    ],
     seen: false,
     id: 8,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Joshua",
     msgSent: [],
     msgRecieved: ["Alright then 👌"],
-    timeOfLastChat: "7:20",
+    chatTime: [
+      {
+        timeOfLastChatHour: 7,
+        timeOfLastChatMins: 20,
+        timeOfLastChatSec: 17,
+      },
+    ],
     seen: false,
     id: 9,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Emmanuella",
     msgSent: ["Hey"],
     msgRecieved: [],
-    timeOfLastChat: "4:45",
+    chatTime: [
+      {
+        timeOfLastChatHour: 4,
+        timeOfLastChatMins: 45,
+        timeOfLastChatSec: 21,
+      },
+    ],
     seen: false,
     id: 10,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Bivins",
     msgSent: ["Hwfr bro"],
     msgRecieved: [],
-    timeOfLastChat: "2:45",
+    chatTime: [
+      {
+        timeOfLastChatHour: 2,
+        timeOfLastChatMins: 45,
+        timeOfLastChatSec: 18,
+      },
+    ],
     seen: true,
     id: 11,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Churchill",
     msgSent: ["What's good Churchill"],
     msgRecieved: [],
-    timeOfLastChat: "2:45",
+    chatTime: [
+      {
+        timeOfLastChatHour: 2,
+        timeOfLastChatMins: 30,
+        timeOfLastChatSec: 16,
+      },
+    ],
     seen: false,
     id: 12,
-    sentMessages: [],
+    unread: false,
   },
   {
     chatName: "Princewill",
     msgSent: [],
     msgRecieved: ["Guy u sabi😂😂"],
-    timeOfLastChat: "2:20",
+    chatTime: [
+      {
+        timeOfLastChatHour: 2,
+        timeOfLastChatMins: 20,
+        timeOfLastChatSec: 23,
+      },
+    ],
     seen: false,
     id: 13,
-    sentMessages: [],
+    unread: true,
   },
   {
     chatName: "Timayin",
     msgSent: ["Ohh, I didn’t hear well😅"],
     msgRecieved: [],
-    timeOfLastChat: "2:00",
+    chatTime: [
+      {
+        timeOfLastChatHour: 2,
+        timeOfLastChatMins: 0,
+        timeOfLastChatSec: 16,
+      },
+    ],
     seen: false,
     id: 14,
-    sentMessages: [],
+    unread: false,
   },
   {
-    chatName: "BEM",
+    chatName: "Bem",
     msgSent: [],
     msgRecieved: ["I'm trying to build something"],
-    timeOfLastChat: "1:00",
+    chatTime: [
+      {
+        timeOfLastChatHour: 1,
+        timeOfLastChatMins: 0,
+        timeOfLastChatSec: 24,
+      },
+    ],
     seen: false,
     id: 15,
-    sentMessages: [],
+    unread: true,
   },
 ];
-
-// if (data[i].sentMessages.length > 0) {
-//             data[i].sentMessages.forEach((c) => {
-//               const now = new Date();
-//               const hour = now.getHours(); // 0–59
-//               const minutes = now.getMinutes(); // 0–59
-
-//               const timeOfSend = `${hour}:${minutes}`;
-//               const chatBoxTwo = document.querySelector(".chat-box-two");
-//               console.log(c);
-//               console.log(chatBoxTwo);
-
-//               const html = `
-//     <div class="message-tag-d">
-//               <p>${c}
-//                  <span>
-// ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>
-//               </span></p>
-//             </div>
-//     `;
-//               chatBoxTwo.insertAdjacentHTML('beforeend', html)
-//             });
-
-//         };

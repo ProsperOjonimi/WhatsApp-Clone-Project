@@ -1,11 +1,16 @@
 import { initializeApp } from "./controller.js";
 import { chats } from "./model.js";
 
+export const inputBar = document.querySelector(".search-space");
+export const unreadMessages = document.querySelector(".unread-messages");
+export const allBtn = document.querySelector(".state-all");
+export const unreadBtn = document.querySelector(".state-unread");
+
 const initialBackground = document.querySelector(".whatsapp-open");
 const sideBarSocials = document.querySelector(".side-bar_socials");
 const sideBar = document.querySelector(".side-bar");
 const sideBarFunc = document.querySelector(".side-bar_functional");
-export const inputBar = document.querySelector(".search-space");
+
 const searchBar = document.querySelector(".chat-list_search-bar");
 const chatContainer = document.querySelector(".chat-list");
 const chatListContainer = document.querySelector(".chat-list_chats");
@@ -13,21 +18,17 @@ const addNewBtn = document.querySelector(".new-chat");
 const addChatsContainer = document.querySelector(".add-chats");
 const addChatsBack = document.querySelector(".btn_add-chats-back");
 const messages = document.querySelector(".socials-icon_messages");
-const whatsappHeader = document.querySelector(".xgz6z4f");
-const messageIcon = document.querySelector(".message-icon");
-const statusIcon = document.querySelectorAll(".status-icon");
-const channelsIcon = document.querySelectorAll(".channels-icon");
-const communityIcon = document.querySelectorAll(".community-icon");
-const settingsIcon = document.querySelectorAll(".settings-icon");
-const stateUnread = document.querySelector(".state-unread");
-const stateFav = document.querySelector(".state-favorites");
-const stategroups = document.querySelector(".state-groups");
-const addIcon = document.querySelectorAll(".add-icon");
-const moreIcon = document.querySelector(".more-icon");
-export const unreadMessages = document.querySelector(".unread-messages");
-
-export const allBtn = document.querySelector(".state-all");
-export const unreadBtn = document.querySelector(".state-unread");
+// const whatsappHeader = document.querySelector(".xgz6z4f");
+// const messageIcon = document.querySelector(".message-icon");
+// const statusIcon = document.querySelectorAll(".status-icon");
+// const channelsIcon = document.querySelectorAll(".channels-icon");
+// const communityIcon = document.querySelectorAll(".community-icon");
+// const settingsIcon = document.querySelectorAll(".settings-icon");
+// const stateUnread = document.querySelector(".state-unread");
+// const stateFav = document.querySelector(".state-favorites");
+// const stategroups = document.querySelector(".state-groups");
+// const addIcon = document.querySelectorAll(".add-icon");
+// const moreIcon = document.querySelector(".more-icon");
 
 class AddChats {
   constructor() {
@@ -50,14 +51,11 @@ class AddChats {
   }
 }
 class ChatList {
-  constructor() {
-    // this.clearContainer();
-  }
+  constructor() {}
   filterSearch() {
     const chatListLink = document.querySelectorAll(".chat-list-link");
     const input = inputBar.value.toLowerCase();
     chatListLink.forEach((c) => {
-      // console.log(c);
       console.log(input);
       console.log(
         c.querySelector(".person-name").innerHTML.toLowerCase().includes(input)
@@ -92,45 +90,55 @@ class ChatList {
   renderUnreadChats(datas) {
     this.clearContainer();
 
-    const unreadChats = datas.filter(
-      (c) => c.msgSent.length === 0 && c.seen === false
-    );
+    const unreadChats = datas.filter((c) => c.unread === true);
+    datas = unreadChats;
+
     // unreadChats.forEach((c) => {
-    //   const id = c.id;
-    //   datas[id].seen = c.seen;
+    //   const hr = c.chatTime.at(-1).timeOfLastChatHour;
+    //   const min = c.chatTime.at(-1).timeOfLastChatMins;
+    //   const minString = String(min).padStart(2, 0);
+    //   const time = `${hr}:${minString}`;
+    //   const html2 = `
+    // <a  class="chat-list-link "data-id=${c.id}>
+    //       <div class="chat-list_proper">
+    //         <div class="message-profile-img">
+    //           <ion-icon name="person" class="person-icon"></ion-icon>
+    //         </div>
+    //       <div class="message-description">
+    //           <p class="person-name">${c.chatName}</p>
+    //           <p class="person-text">${c.msgRecieved[0]}</p>
+
+    //       </div>
+    //       <div class="message-information">
+    //         <p class="message-time">${time}</p>
+    //       <div class="message-no" >${c.msgRecieved.length}</div>
+    //       </div>
+
+    //       </div>
+    //       </a>
+
+    // `;
+
+    //   console.log(c.msgRecieved.length);
+    //   chatListContainer.insertAdjacentHTML("beforeend", html2);
+    //   const unreadChatLink = document.querySelectorAll("chat-list-link");
+    //   console.log(unreadChatLink);
+    //   this.renderChatsOnInterface(unreadChatLink, c);
     // });
-    console.log(datas, unreadChats);
-
-    unreadChats.forEach((c) => {
-      const html2 = `
-    <a  class="chat-list-link "data-id=${c.id}>
-          <div class="chat-list_proper">
-            <div class="message-profile-img">
-              <ion-icon name="person" class="person-icon"></ion-icon>
-            </div>
-          <div class="message-description">
-              <p class="person-name">${c.chatName}</p>
-              <p class="person-text">${c.msgRecieved[0]}</p>
-
-          </div>
-          <div class="message-information">
-            <p class="message-time">${c.timeOfLastChat}</p>
-          <div class="message-no" >${c.msgRecieved.length}</div>
-          </div>
-
-          </div>
-          </a>
-    
-    `;
-      console.log(c.msgRecieved.length);
-      chatListContainer.insertAdjacentHTML("beforeend", html2);
-    });
+    this.renderMarkup(datas);
+    const chatProper = document.querySelectorAll(".chat-list-link");
+    this.renderChatsOnInterface(chatProper, datas);
   }
   renderMarkup(chats) {
     this.clearContainer();
     chats.forEach((obj) => {
       const renderedMessageArr =
         obj.msgSent.length >= 1 ? obj.msgSent : obj.msgRecieved;
+      const hr = obj.chatTime.at(-1).timeOfLastChatHour;
+      const min = obj.chatTime.at(-1).timeOfLastChatMins;
+      const minString = String(min).padStart(2, 0);
+      const hrString = String(hr).padStart(2, 0);
+      const time = `${hrString}:${minString}`;
       const renderCheckmark = function () {
         if (renderedMessageArr === obj.msgSent && obj.seen === false) {
           return '<ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>';
@@ -155,17 +163,11 @@ class ChatList {
           </div>
           <div class="message-information">
             <p class="message-time ${
-              (renderedMessageArr === obj.msgRecieved && obj.seen === true) ||
-              renderedMessageArr === obj.msgSent
-                ? "greyColor"
-                : ""
-            }">${obj.timeOfLastChat}</p>
-          <div class="message-no  ${
-            (renderedMessageArr === obj.msgRecieved && obj.seen === true) ||
-            renderedMessageArr === obj.msgSent
-              ? "hidden"
-              : ""
-          }" ">${renderedMessageArr.length}</div>
+              obj.unread === false ? "greyColor" : ""
+            }">${time}</p>
+          <div class="message-no  ${obj.unread === false ? "hidden" : ""}" ">${
+        renderedMessageArr.length
+      }</div>
           </div>
 
           </div>
@@ -175,52 +177,29 @@ class ChatList {
       chatListContainer.insertAdjacentHTML("beforeend", html);
     });
   }
-  // renderUpdatedMsgSend(chats) {
-  //   this.clearContainer();
-  //   chats.forEach((obj) => {
-  //     const now = new Date();
-  //     const hour = now.getHours(); // 0–59
-  //     const minutes = now.getMinutes(); // 0–59
-
-  //     const timeOfSend = `${hour}:${minutes}`;
-  //     const renderedMessageArr = obj.sentMessages[obj.length - 1];
-  //     const renderCheckmark = function () {
-  //       return '<ion-icon name="checkmark-done-outline" class="checkmark-icon"></ion-icon>';
-  //     };
-  //     const html = `
-  //   <a  class="chat-list-link " data-id=${obj.id}>
-  //         <div class="chat-list_proper">
-  //           <div class="message-profile-img">
-  //             <ion-icon name="person" class="person-icon"></ion-icon>
-  //           </div>
-  //         <div class="message-description">
-  //             <p class="person-name">${obj.chatName}</p>
-  //             <p class="person-text">${renderCheckmark()}${renderedMessageArr}</p>
-
-  //         </div>
-  //         <div class="message-information">
-  //           <p class="message-time">${timeOfSend}</p>
-  //         <div class="message-no">${obj.length}</div>
-  //         </div>
-
-  //         </div>
-  //         </a>
-
-  //   `;
-  //     chatListContainer.insertAdjacentHTML("beforeend", html);
-  //   });
-  // }
   showMessage(message, arr, data, id) {
     const now = new Date();
-    const hour = now.getHours(); // 0–59
-    const minutes = now.getMinutes(); // 0–59
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
     console.log(message);
     arr.push(message);
     localStorage.setItem("chats", JSON.stringify(data));
 
-    const timeOfSend = `${hour}:${minutes}`;
     const chatBoxTwo = document.querySelector(".chat-box-two");
     console.log(data[id].seen);
+    data[id].seen = false;
+    const timeObj = {
+      timeOfLastChatHour: hour,
+      timeOfLastChatMins: minutes,
+      timeOfLastChatSec: seconds,
+    };
+    const timeOfSend = `${String(timeObj.timeOfLastChatHour).padStart(
+      2,
+      0
+    )}:${String(timeObj.timeOfLastChatMins).padStart(2, 0)}`;
+    data[id].chatTime.push(timeObj);
+    console.log(data[id]);
 
     const html = `
     <div class="message-tag-d">
@@ -234,24 +213,19 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
     `;
     const chatBoxTwos = document.querySelector(".message-tag-d");
     console.log(chatBoxTwos);
-    // app.darkMode();
     chatBoxTwo.insertAdjacentHTML("beforeend", html);
-    // this.renderMarkup(data);
   }
 
   renderChatsOnInterface(arr, data) {
     const chatProperArr = Array.from(arr);
     chatProperArr.forEach((l, i) => {
       l.addEventListener("click", function () {
-        if (data[i].msgSent.length === 0) data[i].seen = true;
+        console.log(data);
+        if (data[i].unread === true) data[i].unread = false;
         localStorage.setItem("chats", JSON.stringify(data));
-        console.log(data[i].seen);
-        // updateState(data);
-        console.log(data, chats);
-        const noOfUnreadMessages = data.filter(
-          (d) => d.seen === false && d.msgRecieved.length > 0
-        ).length;
-        unreadMessages.querySelector("span").textContent = noOfUnreadMessages;
+        const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
+        console.log(unreadMessages.textContent);
+        unreadMessages.textContent = noOfUnreadMessages;
         if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
         if (data[i].msgRecieved.length > 0 && data[i].msgSent.length === 0) {
@@ -260,12 +234,16 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             let markup;
             if (data[i].msgSent.length > 0) {
               console.log(data[i].sentMessages);
-              const chatsArray = data[i].msgSent.map((c) => {
-                const now = new Date();
-                const hour = now.getHours(); // 0–59
-                const minutes = now.getMinutes(); // 0–59
+              const chatsArray = data[i].msgSent.map((c, ix) => {
+                const hour = String(
+                  data[i].chatTime[ix + 1].timeOfLastChatHour
+                ).padStart(2, 0);
+                const minutes = String(
+                  data[i].chatTime[ix + 1].timeOfLastChatMins
+                ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
+                console.log(timeOfSend);
                 const chatBoxTwo = document.querySelector(".chat-box-two");
                 console.log(c);
                 console.log(chatBoxTwo);
@@ -287,7 +265,7 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             }
             return markup;
           };
-          generateMarkup();
+
           const blankDiv = document.querySelector(".blankDiv");
           const chatInterface = document.querySelector(".chat-interface");
           blankDiv.style.display = "none";
@@ -316,7 +294,9 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             <div>
 
 <p>${data[i].msgRecieved[0]}</p>
-                <span>${data[i].timeOfLastChat}</span>
+                <span>${data[i].chatTime[0].timeOfLastChatHour}:${String(
+            data[i].chatTime[0].timeOfLastChatMins
+          ).padStart(2, 0)}</span>
 
 
             </div>
@@ -355,14 +335,20 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           console.log(data[i].sentMessages);
           const generateMarkup = function () {
             let markup;
+
             if (data[i].msgSent.length > 0) {
               console.log(data[i].sentMessages);
-              const chatsArray = data[i].msgSent.map((c) => {
-                const now = new Date();
-                const hour = now.getHours(); // 0–59
-                const minutes = now.getMinutes(); // 0–59
+              const chatsArray = data[i].msgSent.map((c, ix) => {
+                const hour = String(
+                  data[i].chatTime[ix + 1].timeOfLastChatHour
+                ).padStart(2, 0);
+                const minutes = String(
+                  data[i].chatTime[ix + 1].timeOfLastChatMins
+                ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
+                console.log(timeOfSend);
+
                 const chatBoxTwo = document.querySelector(".chat-box-two");
                 console.log(c);
                 console.log(chatBoxTwo);
@@ -413,7 +399,9 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             <div>
 
 <p>${data[i].msgRecieved[0]}</p>
-                <span>${data[i].timeOfLastChat}</span>
+                <span>${data[i].chatTime[0].timeOfLastChatHour}:${String(
+            data[i].chatTime[0].timeOfLastChatMins
+          ).padStart(2, 0)}</span>
 
 
             </div>
@@ -452,11 +440,13 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             let markup;
             if (data[i].msgSent.length > 0) {
               console.log(data[i].sentMessages);
-              const chatsArray = data[i].msgSent.map((c) => {
-                const now = new Date();
-                const hour = now.getHours(); // 0–59
-                const minutes = now.getMinutes(); // 0–59
-
+              const chatsArray = data[i].msgSent.map((c, ix) => {
+                const hour = String(
+                  data[i].chatTime[ix].timeOfLastChatHour
+                ).padStart(2, 0);
+                const minutes = String(
+                  data[i].chatTime[ix].timeOfLastChatMins
+                ).padStart(2, 0);
                 const timeOfSend = `${hour}:${minutes}`;
                 const chatBoxTwo = document.querySelector(".chat-box-two");
                 console.log(c);
@@ -536,9 +526,7 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           chatInterface.insertAdjacentHTML("afterbegin", markup);
           chatInterface.classList.remove("hidden");
         }
-
         initializeApp();
-        // app.darkMode();
       });
     });
   }
@@ -560,125 +548,124 @@ class App {
     searchBar.style.backgroundColor = "#f6f5f3";
     searchBar.style.border = "none";
   }
-  darkMode() {
-    const personIcon = document.querySelectorAll(".message-profile-img");
-    const chatListLink = document.querySelectorAll(".chat-list-link");
-    const chatInterfaceHeader = document.querySelector(
-      ".chat-interface_header"
-    );
-    const personProfileImg = document.querySelector(".person-profile-img");
-    const videoIcon = document.querySelector(".video-icon");
-    const dropIcon = document.querySelector(".drop-icon");
-    const searchIcon = document.querySelector(".search-icon");
-    const optionsIcon = document.querySelector(".options-icon");
-    const chatInterface = document.querySelector(".chat-interface");
-    const chatBoxOne = document.querySelector(".chat-box-one");
-    const chatBoxTwo = document.querySelector(".message-tag-d");
-    const chatBoxOneDiv = chatBoxOne.querySelector("div");
-    // const chatBoxTwoDiv = chatBoxTwo.querySelector("div");
-    const chatInterfaceMessageBar = document.querySelector(
-      ".chat-interface_message-bar"
-    );
-    const messageSpace = document.querySelector(".message-space");
-    const voiceIcon = document.querySelector(".voice");
-    const plusIcon = document.querySelector(".plus");
-    const emoji = document.querySelectorAll(".emoji");
-    const sendBtn = document.querySelector(".send");
+  // darkMode() {
+  //   const personIcon = document.querySelectorAll(".message-profile-img");
+  //   const chatListLink = document.querySelectorAll(".chat-list-link");
+  //   const chatInterfaceHeader = document.querySelector(
+  //     ".chat-interface_header"
+  //   );
+  //   const personProfileImg = document.querySelector(".person-profile-img");
+  //   const videoIcon = document.querySelector(".video-icon");
+  //   const dropIcon = document.querySelector(".drop-icon");
+  //   const searchIcon = document.querySelector(".search-icon");
+  //   const optionsIcon = document.querySelector(".options-icon");
+  //   const chatInterface = document.querySelector(".chat-interface");
+  //   const chatBoxOne = document.querySelector(".chat-box-one");
+  //   const chatBoxTwo = document.querySelector(".message-tag-d");
+  //   const chatBoxOneDiv = chatBoxOne.querySelector("div");
+  //   // const chatBoxTwoDiv = chatBoxTwo.querySelector("div");
+  //   const chatInterfaceMessageBar = document.querySelector(
+  //     ".chat-interface_message-bar"
+  //   );
+  //   const messageSpace = document.querySelector(".message-space");
+  //   const voiceIcon = document.querySelector(".voice");
+  //   const plusIcon = document.querySelector(".plus");
+  //   const emoji = document.querySelectorAll(".emoji");
+  //   const sendBtn = document.querySelector(".send");
 
-    chatContainer.style.backgroundColor = " #161717";
-    sideBarSocials.style.backgroundColor = "#1D1F1F";
-    sideBarSocials.style.borderBottom = "1px solid #2E2F2F";
-    whatsappHeader.setAttribute("fill", "#FFFFFF");
-    messageIcon.setAttribute("fill", "#FFFFFF");
-    statusIcon.forEach((i) => {
-      i.setAttribute("fill", "#A9AAAA");
-    });
-    channelsIcon.forEach((i) => {
-      i.setAttribute("fill", "#A9AAAA");
-    });
-    communityIcon.forEach((i) => {
-      i.setAttribute("fill", "#A9AAAA");
-    });
-    settingsIcon.forEach((i) => {
-      i.setAttribute("fill", "#A9AAAA");
-    });
-    sideBar.style.backgroundColor = "#1D1F1F";
-    sideBarFunc.backgroundColor = "#1D1F1F";
-    inputBar.style.backgroundColor = "#2E2F2F";
-    inputBar.style.color = "#ABACAC";
-    searchBar.style.backgroundColor = "#2E2F2F";
-    allBtn.style.backgroundColor = "#103529";
-    allBtn.style.border = "1px solid #2d453eff";
-    allBtn.style.color = "#D9FDD3";
-    [stateUnread, stateFav, stategroups].forEach((b) => {
-      b.style.color = "#abacac";
-      b.style.border = "1px solid #404141";
-      addIcon.forEach((i) => {
-        i.setAttribute("fill", "#ffffff");
-      });
-      moreIcon.setAttribute("fill", "#ffffff");
-    });
-    const chatName = document.querySelectorAll(".person-name");
-    console.log(chatName);
-    chatName.forEach((i) => {
-      i.style.setProperty("color", "#FFFFFF", "important");
-    });
+  //   chatContainer.style.backgroundColor = " #161717";
+  //   sideBarSocials.style.backgroundColor = "#1D1F1F";
+  //   sideBarSocials.style.borderBottom = "1px solid #2E2F2F";
+  //   whatsappHeader.setAttribute("fill", "#FFFFFF");
+  //   messageIcon.setAttribute("fill", "#FFFFFF");
+  //   statusIcon.forEach((i) => {
+  //     i.setAttribute("fill", "#A9AAAA");
+  //   });
+  //   channelsIcon.forEach((i) => {
+  //     i.setAttribute("fill", "#A9AAAA");
+  //   });
+  //   communityIcon.forEach((i) => {
+  //     i.setAttribute("fill", "#A9AAAA");
+  //   });
+  //   settingsIcon.forEach((i) => {
+  //     i.setAttribute("fill", "#A9AAAA");
+  //   });
+  //   sideBar.style.backgroundColor = "#1D1F1F";
+  //   sideBarFunc.backgroundColor = "#1D1F1F";
+  //   inputBar.style.backgroundColor = "#2E2F2F";
+  //   inputBar.style.color = "#ABACAC";
+  //   searchBar.style.backgroundColor = "#2E2F2F";
+  //   allBtn.style.backgroundColor = "#103529";
+  //   allBtn.style.border = "1px solid #2d453eff";
+  //   allBtn.style.color = "#D9FDD3";
+  //   [stateUnread, stateFav, stategroups].forEach((b) => {
+  //     b.style.color = "#abacac";
+  //     b.style.border = "1px solid #404141";
+  //     addIcon.forEach((i) => {
+  //       i.setAttribute("fill", "#ffffff");
+  //     });
+  //     moreIcon.setAttribute("fill", "#ffffff");
+  //   });
+  //   const chatName = document.querySelectorAll(".person-name");
+  //   console.log(chatName);
+  //   chatName.forEach((i) => {
+  //     i.style.setProperty("color", "#FFFFFF", "important");
+  //   });
 
-    console.log(personIcon);
-    personIcon.forEach((i) => {
-      i.style.backgroundColor = "#242626";
-      i.style.border = "0.1px solid #3b3c3cff";
-    });
-    chatListLink.forEach((l) => {
-      l.addEventListener("mouseenter", function () {
-        l.style.backgroundColor = "#2E2F2F";
-      });
-    });
-    chatListLink.forEach((l) => {
-      l.addEventListener("mouseleave", function () {
-        l.style.backgroundColor = "#161717";
-      });
-    });
-    chatInterfaceHeader.style.backgroundColor = "#161717";
-    personProfileImg.style.backgroundColor = "#242626";
-    personProfileImg.style.border = "1px solid #3b3c3cff";
-    // videoIcon.setAttribute("fill", "#FFFFFF");
-    console.log(searchIcon);
-    [videoIcon, dropIcon, searchIcon, optionsIcon].forEach((i) => {
-      i.setAttribute("fill", "#FFFFFF");
-    });
-    chatInterface.style.backgroundColor = "#161717";
+  //   console.log(personIcon);
+  //   personIcon.forEach((i) => {
+  //     i.style.backgroundColor = "#242626";
+  //     i.style.border = "0.1px solid #3b3c3cff";
+  //   });
+  //   chatListLink.forEach((l) => {
+  //     l.addEventListener("mouseenter", function () {
+  //       l.style.backgroundColor = "#2E2F2F";
+  //     });
+  //   });
+  //   chatListLink.forEach((l) => {
+  //     l.addEventListener("mouseleave", function () {
+  //       l.style.backgroundColor = "#161717";
+  //     });
+  //   });
+  //   chatInterfaceHeader.style.backgroundColor = "#161717";
+  //   personProfileImg.style.backgroundColor = "#242626";
+  //   personProfileImg.style.border = "1px solid #3b3c3cff";
+  //   // videoIcon.setAttribute("fill", "#FFFFFF");
+  //   console.log(searchIcon);
+  //   [videoIcon, dropIcon, searchIcon, optionsIcon].forEach((i) => {
+  //     i.setAttribute("fill", "#FFFFFF");
+  //   });
+  //   chatInterface.style.backgroundColor = "#161717";
 
-    if (chatBoxOneDiv) {
-      chatBoxOneDiv.style.color = "#FFFFFF";
-      chatBoxOneDiv.style.backgroundColor = "#242626";
-    }
-    if (chatBoxTwo) {
-      chatBoxTwo.style.backgroundColor = "#144D37";
-      chatBoxTwo.style.color = "#FFFFFF";
-    }
-    console.log(chatInterfaceMessageBar);
-    chatInterfaceMessageBar.style.backgroundColor = "#242626";
-    messageSpace.style.backgroundColor = "#242626";
-    messageSpace.style.color = "#FFFFFF";
-    console.log(plusIcon);
-    // plusIcon?.setAttribute("fill", "#FFFFFF");
-    [plusIcon, voiceIcon].forEach((i) => {
-      i?.setAttribute("fill", "#FFFFFF");
-    });
-    emoji.forEach((i) => {
-      i?.setAttribute("fill", "#FFFFFF");
-    });
-    sendBtn?.setAttribute("fill", "#0A0A0A");
-  }
-  // #2E2F2F
+  //   if (chatBoxOneDiv) {
+  //     chatBoxOneDiv.style.color = "#FFFFFF";
+  //     chatBoxOneDiv.style.backgroundColor = "#242626";
+  //   }
+  //   if (chatBoxTwo) {
+  //     chatBoxTwo.style.backgroundColor = "#144D37";
+  //     chatBoxTwo.style.color = "#FFFFFF";
+  //   }
+  //   console.log(chatInterfaceMessageBar);
+  //   chatInterfaceMessageBar.style.backgroundColor = "#242626";
+  //   messageSpace.style.backgroundColor = "#242626";
+  //   messageSpace.style.color = "#FFFFFF";
+  //   console.log(plusIcon);
+  //   // plusIcon?.setAttribute("fill", "#FFFFFF");
+  //   [plusIcon, voiceIcon].forEach((i) => {
+  //     i?.setAttribute("fill", "#FFFFFF");
+  //   });
+  //   emoji.forEach((i) => {
+  //     i?.setAttribute("fill", "#FFFFFF");
+  //   });
+  //   sendBtn?.setAttribute("fill", "#0A0A0A");
+  // }
+
   init() {
     setTimeout(() => {
       initialBackground.classList.add("hidden");
     }, 2000);
   }
 }
-// #21c063
 
 export const app = new App();
 export const chatList = new ChatList();
