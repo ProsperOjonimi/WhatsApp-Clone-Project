@@ -10,12 +10,8 @@ import { allBtn, unreadBtn } from "./view.js";
 if (!localStorage.getItem("chats")) {
   localStorage.setItem("chats", JSON.stringify(chats));
 }
-export let storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
+const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
 console.log(storedChatsInfo);
-
-export const setData = function (newData) {
-  storedChatsInfo = newData;
-};
 
 export const initializeApp = function () {
   app.init();
@@ -23,6 +19,7 @@ export const initializeApp = function () {
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
   chatList.renderMarkup(storedChatsInfo);
+  console.log(storedChatsInfo);
   const chatProper = document.querySelectorAll(".chat-list-link");
   chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   const noOfUnreadMessages = storedChatsInfo.filter(
@@ -80,7 +77,6 @@ updateUnreadChats(storedChatsInfo);
 const allChats = function () {
   allBtn.addEventListener("click", function () {
     chatList.clearContainer();
-    // setData(chats);
     chatList.toggleAll();
     console.log(chats);
     chatList.renderMarkup(storedChatsInfo);

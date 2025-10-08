@@ -184,7 +184,6 @@ class ChatList {
     const seconds = now.getSeconds();
     console.log(message);
     arr.push(message);
-    localStorage.setItem("chats", JSON.stringify(data));
 
     const chatBoxTwo = document.querySelector(".chat-box-two");
     console.log(data[id].seen);
@@ -199,7 +198,8 @@ class ChatList {
       0
     )}:${String(timeObj.timeOfLastChatMins).padStart(2, 0)}`;
     data[id].chatTime.push(timeObj);
-    console.log(data[id]);
+    localStorage.setItem("chats", JSON.stringify(data));
+    console.log(data);
 
     const html = `
     <div class="message-tag-d">
