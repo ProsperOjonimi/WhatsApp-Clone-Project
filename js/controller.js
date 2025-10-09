@@ -10,21 +10,19 @@ import { allBtn, unreadBtn } from "./view.js";
 if (!localStorage.getItem("chats")) {
   localStorage.setItem("chats", JSON.stringify(chats));
 }
-const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
+export const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
 console.log(storedChatsInfo);
 
-export const initializeApp = function () {
+export const initializeApp = function (data) {
   app.init();
 
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
-  chatList.renderMarkup(storedChatsInfo);
-  console.log(storedChatsInfo);
+  chatList.renderMarkup(data);
+  console.log(data);
   const chatProper = document.querySelectorAll(".chat-list-link");
-  chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
-  const noOfUnreadMessages = storedChatsInfo.filter(
-    (d) => d.unread === true
-  ).length;
+  chatList.renderChatsOnInterface(chatProper, data);
+  const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
   unreadMessages.textContent = noOfUnreadMessages;
   if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
@@ -50,17 +48,12 @@ export const initializeApp = function () {
         sendButton.classList.add("hidden");
         voiceRecord.classList.remove("hidden");
       }
-      chatList.showMessage(
-        message,
-        storedChatsInfo[id].msgSent,
-        storedChatsInfo,
-        id
-      );
+      chatList.showMessage(message, data[id].msgSent, data, id);
 
       console.log(chats);
-      chatList.renderMarkup(storedChatsInfo);
+      chatList.renderMarkup(data);
       const chatProper = document.querySelectorAll(".chat-list-link");
-      chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
+      chatList.renderChatsOnInterface(chatProper, data);
     });
   };
 
@@ -78,7 +71,7 @@ const allChats = function () {
   allBtn.addEventListener("click", function () {
     chatList.clearContainer();
     chatList.toggleAll();
-    console.log(chats);
+    console.log(storedChatsInfo);
     chatList.renderMarkup(storedChatsInfo);
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
@@ -87,4 +80,4 @@ const allChats = function () {
 
 inputBar.addEventListener("input", chatList.filterSearch);
 allChats();
-initializeApp();
+initializeApp(storedChatsInfo);
