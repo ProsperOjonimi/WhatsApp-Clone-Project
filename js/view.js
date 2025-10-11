@@ -1,4 +1,8 @@
-import { initializeApp, storedChatsInfo } from "./controller.js";
+import {
+  initializeApp,
+  storedChatsInfo,
+  renderSendButton,
+} from "./controller.js";
 import { chats } from "./model.js";
 
 export const inputBar = document.querySelector(".search-space");
@@ -56,17 +60,11 @@ class ChatList {
     const chatListLink = document.querySelectorAll(".chat-list-link");
     const input = inputBar.value.toLowerCase();
     chatListLink.forEach((c) => {
-      console.log(input);
-      console.log(
-        c.querySelector(".person-name").innerHTML.toLowerCase().includes(input)
-      );
       if (
         c.querySelector(".person-name").innerHTML.toLowerCase().includes(input)
       ) {
-        console.log(c, "I will show");
         c.style.display = "inline-block";
       } else {
-        console.log(c, "Nope");
         c.style.display = "none";
       }
     });
@@ -87,7 +85,7 @@ class ChatList {
     allBtn.style.backgroundColor = "#d7fbd3";
     allBtn.style.color = "#658e6c";
   }
-  renderUnreadChats(datas) {
+  renderUnreadChats(datas, datas2) {
     this.clearContainer();
 
     const unreadChats = datas.filter((c) => c.unread === true);
@@ -118,37 +116,32 @@ class ChatList {
     //       </a>
 
     // `;
-
-    //   console.log(c.msgRecieved.length);
     //   chatListContainer.insertAdjacentHTML("beforeend", html2);
     //   const unreadChatLink = document.querySelectorAll("chat-list-link");
-    //   console.log(unreadChatLink);
     //   this.renderChatsOnInterface(unreadChatLink, c);
     // });
     // localStorage.setItem("chats", JSON.stringify(data));
-    console.log(datas);
     this.renderMarkup(datas);
     const chatProper = document.querySelectorAll(".chat-list-link");
-    this.renderUnreadChatsInterface(chatProper, datas);
+    this.renderUnreadChatsInterface(chatProper, datas, datas2);
   }
-  renderUnreadChatsInterface(arr, data) {
+  renderUnreadChatsInterface(arr, data, data2) {
     const chatProperArr = Array.from(arr);
     chatProperArr.forEach((l, i) => {
       l.addEventListener("click", function () {
         console.log(data);
+        console.log(data2);
         if (data[i].unread === true) data[i].unread = false;
-        // localStorage.setItem("chats", JSON.stringify(data));
+        // if (data2[i].unread === true) data2[i].unread = false;
+        localStorage.setItem("chats", JSON.stringify(data2));
         const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
-        console.log(unreadMessages.textContent);
         unreadMessages.textContent = noOfUnreadMessages;
         if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
         if (data[i].msgRecieved.length > 0 && data[i].msgSent.length === 0) {
-          console.log(data[i].sentMessages);
           const generateMarkup = function () {
             let markup;
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix + 1].timeOfLastChatHour
@@ -158,10 +151,8 @@ class ChatList {
                 ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
-                console.log(timeOfSend);
+
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -247,12 +238,10 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
         }
 
         if (data[i].msgRecieved.length > 0 && data[i].msgSent.length > 0) {
-          console.log(data[i].sentMessages);
           const generateMarkup = function () {
             let markup;
 
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix + 1].timeOfLastChatHour
@@ -262,11 +251,8 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
                 ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
-                console.log(timeOfSend);
 
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -354,7 +340,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           const generateMarkup = function () {
             let markup;
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix].timeOfLastChatHour
@@ -364,8 +349,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
                 ).padStart(2, 0);
                 const timeOfSend = `${hour}:${minutes}`;
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -441,7 +424,47 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           chatInterface.insertAdjacentHTML("afterbegin", markup);
           chatInterface.classList.remove("hidden");
         }
-        initializeApp(data);
+        chatList.renderMarkup(data);
+        const chatProper = document.querySelectorAll(".chat-list-link");
+        chatList.renderUnreadChatsInterface(chatProper, data, storedChatsInfo);
+
+        const renderSendButton = function (data) {
+          const messageSpace = document.querySelector(".message-space");
+          const sendButton = document.querySelector(".send-button");
+          const voiceRecord = document.querySelector(".voice-recording-icon");
+          messageSpace.addEventListener("input", function () {
+            sendButton.classList.remove("hidden");
+            voiceRecord.classList.add("hidden");
+            if (messageSpace.value.trim() === "") {
+              sendButton.classList.add("hidden");
+              voiceRecord.classList.remove("hidden");
+            }
+          });
+          sendButton?.addEventListener("click", function () {
+            const id = +sendButton.dataset.id;
+            const message = messageSpace.value.trim();
+            messageSpace.value = "";
+            if (messageSpace.value.trim() === "") {
+              sendButton.classList.add("hidden");
+              voiceRecord.classList.remove("hidden");
+            }
+            chatList.showMessage(
+              message,
+              data[id].msgSent,
+              data,
+              id,
+              storedChatsInfo
+            );
+            chatList.renderMarkup(data);
+            const chatProper = document.querySelectorAll(".chat-list-link");
+            chatList.renderUnreadChatsInterface(
+              chatProper,
+              data,
+              storedChatsInfo
+            );
+          });
+        };
+        renderSendButton(data);
       });
     });
   }
@@ -493,16 +516,16 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
       chatListContainer.insertAdjacentHTML("beforeend", html);
     });
   }
-  showMessage(message, arr, data, id) {
+  showMessage(message, arr, data, id, main) {
     const now = new Date();
     const hour = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
-    console.log(message);
+
     arr.push(message);
 
     const chatBoxTwo = document.querySelector(".chat-box-two");
-    console.log(data[id].seen);
+
     data[id].seen = false;
     const timeObj = {
       timeOfLastChatHour: hour,
@@ -514,8 +537,8 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
       0
     )}:${String(timeObj.timeOfLastChatMins).padStart(2, 0)}`;
     data[id].chatTime.push(timeObj);
-    localStorage.setItem("chats", JSON.stringify(data));
     console.log(data);
+    localStorage.setItem("chats", JSON.stringify(main));
 
     const html = `
     <div class="message-tag-d">
@@ -528,7 +551,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             </div>
     `;
     const chatBoxTwos = document.querySelector(".message-tag-d");
-    console.log(chatBoxTwos);
     chatBoxTwo.insertAdjacentHTML("beforeend", html);
   }
 
@@ -536,20 +558,17 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
     const chatProperArr = Array.from(arr);
     chatProperArr.forEach((l, i) => {
       l.addEventListener("click", function () {
-        console.log(data);
         if (data[i].unread === true) data[i].unread = false;
+        console.log(data);
         localStorage.setItem("chats", JSON.stringify(data));
         const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
-        console.log(unreadMessages.textContent);
         unreadMessages.textContent = noOfUnreadMessages;
         if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
 
         if (data[i].msgRecieved.length > 0 && data[i].msgSent.length === 0) {
-          console.log(data[i].sentMessages);
           const generateMarkup = function () {
             let markup;
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix + 1].timeOfLastChatHour
@@ -559,10 +578,8 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
                 ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
-                console.log(timeOfSend);
+
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -648,12 +665,10 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
         }
 
         if (data[i].msgRecieved.length > 0 && data[i].msgSent.length > 0) {
-          console.log(data[i].sentMessages);
           const generateMarkup = function () {
             let markup;
 
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix + 1].timeOfLastChatHour
@@ -663,11 +678,8 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
                 ).padStart(2, 0);
 
                 const timeOfSend = `${hour}:${minutes}`;
-                console.log(timeOfSend);
 
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -755,7 +767,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           const generateMarkup = function () {
             let markup;
             if (data[i].msgSent.length > 0) {
-              console.log(data[i].sentMessages);
               const chatsArray = data[i].msgSent.map((c, ix) => {
                 const hour = String(
                   data[i].chatTime[ix].timeOfLastChatHour
@@ -765,8 +776,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
                 ).padStart(2, 0);
                 const timeOfSend = `${hour}:${minutes}`;
                 const chatBoxTwo = document.querySelector(".chat-box-two");
-                console.log(c);
-                console.log(chatBoxTwo);
 
                 const html = `
     <div class="message-tag-d">
@@ -843,6 +852,7 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
           chatInterface.classList.remove("hidden");
         }
         initializeApp(storedChatsInfo);
+        renderSendButton(storedChatsInfo);
       });
     });
   }
@@ -853,13 +863,11 @@ class App {
     inputBar.addEventListener("blur", this.blurSearchBar.bind(this));
   }
   focusSearchBar() {
-    console.log("focus");
     inputBar.style.backgroundColor = "#FFFFFF";
     searchBar.style.backgroundColor = "#FFFFFF";
     searchBar.style.border = "2px solid #1DAA61";
   }
   blurSearchBar() {
-    console.log("blur");
     inputBar.style.backgroundColor = "#f6f5f3";
     searchBar.style.backgroundColor = "#f6f5f3";
     searchBar.style.border = "none";
@@ -923,12 +931,11 @@ class App {
   //     moreIcon.setAttribute("fill", "#ffffff");
   //   });
   //   const chatName = document.querySelectorAll(".person-name");
-  //   console.log(chatName);
+
   //   chatName.forEach((i) => {
   //     i.style.setProperty("color", "#FFFFFF", "important");
   //   });
 
-  //   console.log(personIcon);
   //   personIcon.forEach((i) => {
   //     i.style.backgroundColor = "#242626";
   //     i.style.border = "0.1px solid #3b3c3cff";
@@ -947,7 +954,7 @@ class App {
   //   personProfileImg.style.backgroundColor = "#242626";
   //   personProfileImg.style.border = "1px solid #3b3c3cff";
   //   // videoIcon.setAttribute("fill", "#FFFFFF");
-  //   console.log(searchIcon);
+
   //   [videoIcon, dropIcon, searchIcon, optionsIcon].forEach((i) => {
   //     i.setAttribute("fill", "#FFFFFF");
   //   });
@@ -961,11 +968,11 @@ class App {
   //     chatBoxTwo.style.backgroundColor = "#144D37";
   //     chatBoxTwo.style.color = "#FFFFFF";
   //   }
-  //   console.log(chatInterfaceMessageBar);
+
   //   chatInterfaceMessageBar.style.backgroundColor = "#242626";
   //   messageSpace.style.backgroundColor = "#242626";
   //   messageSpace.style.color = "#FFFFFF";
-  //   console.log(plusIcon);
+
   //   // plusIcon?.setAttribute("fill", "#FFFFFF");
   //   [plusIcon, voiceIcon].forEach((i) => {
   //     i?.setAttribute("fill", "#FFFFFF");

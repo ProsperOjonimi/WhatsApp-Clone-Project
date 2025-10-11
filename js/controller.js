@@ -11,58 +11,50 @@ if (!localStorage.getItem("chats")) {
   localStorage.setItem("chats", JSON.stringify(chats));
 }
 export const storedChatsInfo = JSON.parse(localStorage.getItem("chats"));
-console.log(storedChatsInfo);
+export const renderSendButton = function (data) {
+  const messageSpace = document.querySelector(".message-space");
+  const sendButton = document.querySelector(".send-button");
+  const voiceRecord = document.querySelector(".voice-recording-icon");
+  messageSpace.addEventListener("input", function () {
+    sendButton.classList.remove("hidden");
+    voiceRecord.classList.add("hidden");
+    if (messageSpace.value.trim() === "") {
+      sendButton.classList.add("hidden");
+      voiceRecord.classList.remove("hidden");
+    }
+  });
+  sendButton?.addEventListener("click", function () {
+    const id = +sendButton.dataset.id;
+    const message = messageSpace.value.trim();
+    messageSpace.value = "";
+    if (messageSpace.value.trim() === "") {
+      sendButton.classList.add("hidden");
+      voiceRecord.classList.remove("hidden");
+    }
+    chatList.showMessage(message, data[id].msgSent, data, id, storedChatsInfo);
+    chatList.renderMarkup(data);
+    const chatProper = document.querySelectorAll(".chat-list-link");
+    chatList.renderChatsOnInterface(chatProper, data);
+  });
+};
 
 export const initializeApp = function (data) {
   app.init();
-
+  console.log(data);
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
   chatList.renderMarkup(data);
-  console.log(data);
   const chatProper = document.querySelectorAll(".chat-list-link");
   chatList.renderChatsOnInterface(chatProper, data);
   const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
   unreadMessages.textContent = noOfUnreadMessages;
   if (noOfUnreadMessages === 0) unreadMessages.classList.add("hidden");
-
-  const renderSendButton = function () {
-    const messageSpace = document.querySelector(".message-space");
-    const sendButton = document.querySelector(".send-button");
-    const voiceRecord = document.querySelector(".voice-recording-icon");
-    console.log(messageSpace);
-    messageSpace.addEventListener("input", function () {
-      sendButton.classList.remove("hidden");
-      voiceRecord.classList.add("hidden");
-      if (messageSpace.value.trim() === "") {
-        sendButton.classList.add("hidden");
-        voiceRecord.classList.remove("hidden");
-      }
-    });
-    sendButton?.addEventListener("click", function () {
-      console.log(sendButton);
-      const id = +sendButton.dataset.id;
-      const message = messageSpace.value.trim();
-      messageSpace.value = "";
-      if (messageSpace.value.trim() === "") {
-        sendButton.classList.add("hidden");
-        voiceRecord.classList.remove("hidden");
-      }
-      chatList.showMessage(message, data[id].msgSent, data, id);
-
-      console.log(chats);
-      chatList.renderMarkup(data);
-      const chatProper = document.querySelectorAll(".chat-list-link");
-      chatList.renderChatsOnInterface(chatProper, data);
-    });
-  };
-
-  renderSendButton();
 };
+renderSendButton(storedChatsInfo);
 const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
     chatList.toggleUnreadActive();
-    chatList.renderUnreadChats(data);
+    chatList.renderUnreadChats(data, storedChatsInfo);
   });
 };
 updateUnreadChats(storedChatsInfo);
@@ -71,7 +63,6 @@ const allChats = function () {
   allBtn.addEventListener("click", function () {
     chatList.clearContainer();
     chatList.toggleAll();
-    console.log(storedChatsInfo);
     chatList.renderMarkup(storedChatsInfo);
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
