@@ -1081,4 +1081,32 @@ a:active {
 .flex {
   display: flex;
   gap: 0.5rem;
+  position: relative;
+}
+.dropdown-menu {
+  width: 20.6rem;
+  height: 33rem;
+  border-radius: 15px;
+  position: absolute;
+  right: 100%;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 2px 2px 10px grey;
+}
+.chats-options div {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  padding-top: 1.5rem;
+  gap: 1.5rem;
+  color: #626262;
+  font-size: 1.5rem;
+  border-radius: 9px;
+}
+.seperator {
+  border-bottom: 1px solid rgba(255, 251, 251, 0.959);
+  border-radius: 0px;
+  width: 18rem;
+  margin: 0 auto;
+  margin-top: 1rem;
 }

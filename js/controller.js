@@ -36,7 +36,7 @@ export const renderSendButton = function (data) {
 
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, data);
-    chatList.hoverFavoritesDropdown();
+    chatList.renderFavoritesDropdown();
   });
 };
 
@@ -47,7 +47,7 @@ export const initializeApp = function (data) {
   addChats.showAddChatContainer();
   chatList.sortChats(data);
   chatList.renderMarkup(data);
-  chatList.hoverFavoritesDropdown();
+  chatList.renderFavoritesDropdown();
   const chatProper = document.querySelectorAll(".chat-list-link");
   chatList.renderChatsOnInterface(chatProper, data);
   const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
@@ -59,7 +59,7 @@ const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
     chatList.toggleUnreadActive();
     chatList.renderUnreadChats(data, storedChatsInfo);
-    chatList.hoverFavoritesDropdown();
+    chatList.renderFavoritesDropdown();
   });
 };
 updateUnreadChats(storedChatsInfo);
@@ -70,7 +70,7 @@ const allChats = function () {
     chatList.toggleAll();
     chatList.sortChats(storedChatsInfo);
     chatList.renderMarkup(storedChatsInfo);
-    chatList.hoverFavoritesDropdown();
+    chatList.renderFavoritesDropdown();
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   });
