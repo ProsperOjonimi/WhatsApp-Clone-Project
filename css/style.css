@@ -1078,3 +1078,7 @@ a:active {
   padding: 0.5rem !important;
   max-height: fit-content !important;
 }
+.flex {
+  display: flex;
+  gap: 0.5rem;
+}

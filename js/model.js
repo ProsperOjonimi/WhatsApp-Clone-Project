@@ -5,6 +5,7 @@ export let chats = [
     msgRecieved: ["Heyy"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 17,
         timeOfLastChatMins: 0,
         timeOfLastChatSec: 16,
@@ -20,6 +21,7 @@ export let chats = [
     msgRecieved: ["That's a good idea. Will do"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 16,
         timeOfLastChatMins: 50,
         timeOfLastChatSec: 22,
@@ -35,6 +37,7 @@ export let chats = [
     msgRecieved: ["Okay Okay 😂"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 15,
         timeOfLastChatMins: 30,
         timeOfLastChatSec: 39,
@@ -50,6 +53,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 11,
         timeOfLastChatMins: 7,
         timeOfLastChatSec: 42,
@@ -65,6 +69,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 10,
         timeOfLastChatMins: 34,
         timeOfLastChatSec: 25,
@@ -80,6 +85,7 @@ export let chats = [
     msgRecieved: ["Yh"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 9,
         timeOfLastChatMins: 20,
         timeOfLastChatSec: 19,
@@ -95,6 +101,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 8,
         timeOfLastChatMins: 50,
         timeOfLastChatSec: 12,
@@ -110,6 +117,7 @@ export let chats = [
     msgRecieved: ["Yeah"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-10",
         timeOfLastChatHour: 8,
         timeOfLastChatMins: 32,
         timeOfLastChatSec: 25,
@@ -125,6 +133,7 @@ export let chats = [
     msgRecieved: ["Hwfr na"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-09",
         timeOfLastChatHour: 8,
         timeOfLastChatMins: 0,
         timeOfLastChatSec: 29,
@@ -140,6 +149,7 @@ export let chats = [
     msgRecieved: ["Alright then 👌"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-09",
         timeOfLastChatHour: 7,
         timeOfLastChatMins: 20,
         timeOfLastChatSec: 17,
@@ -155,6 +165,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-09",
         timeOfLastChatHour: 4,
         timeOfLastChatMins: 45,
         timeOfLastChatSec: 21,
@@ -170,6 +181,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-09",
         timeOfLastChatHour: 2,
         timeOfLastChatMins: 45,
         timeOfLastChatSec: 18,
@@ -185,6 +197,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-06",
         timeOfLastChatHour: 2,
         timeOfLastChatMins: 30,
         timeOfLastChatSec: 16,
@@ -200,6 +213,7 @@ export let chats = [
     msgRecieved: ["Guy u sabi😂😂"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-06",
         timeOfLastChatHour: 2,
         timeOfLastChatMins: 20,
         timeOfLastChatSec: 23,
@@ -215,6 +229,7 @@ export let chats = [
     msgRecieved: [],
     chatTime: [
       {
+        dayOfMessage: "2025-10-06",
         timeOfLastChatHour: 2,
         timeOfLastChatMins: 0,
         timeOfLastChatSec: 16,
@@ -230,6 +245,7 @@ export let chats = [
     msgRecieved: ["I'm trying to build something"],
     chatTime: [
       {
+        dayOfMessage: "2025-10-05",
         timeOfLastChatHour: 1,
         timeOfLastChatMins: 0,
         timeOfLastChatSec: 24,

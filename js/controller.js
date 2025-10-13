@@ -33,8 +33,10 @@ export const renderSendButton = function (data) {
     }
     chatList.showMessage(message, data[id].msgSent, data, id, storedChatsInfo);
     chatList.renderMarkup(data);
+
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, data);
+    chatList.hoverFavoritesDropdown();
   });
 };
 
@@ -43,7 +45,9 @@ export const initializeApp = function (data) {
   console.log(data);
   addChats.removeChatContainer();
   addChats.showAddChatContainer();
+  chatList.sortChats(data);
   chatList.renderMarkup(data);
+  chatList.hoverFavoritesDropdown();
   const chatProper = document.querySelectorAll(".chat-list-link");
   chatList.renderChatsOnInterface(chatProper, data);
   const noOfUnreadMessages = data.filter((d) => d.unread === true).length;
@@ -55,6 +59,7 @@ const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
     chatList.toggleUnreadActive();
     chatList.renderUnreadChats(data, storedChatsInfo);
+    chatList.hoverFavoritesDropdown();
   });
 };
 updateUnreadChats(storedChatsInfo);
@@ -63,7 +68,9 @@ const allChats = function () {
   allBtn.addEventListener("click", function () {
     chatList.clearContainer();
     chatList.toggleAll();
+    chatList.sortChats(storedChatsInfo);
     chatList.renderMarkup(storedChatsInfo);
+    chatList.hoverFavoritesDropdown();
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatList.renderChatsOnInterface(chatProper, storedChatsInfo);
   });

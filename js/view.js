@@ -125,6 +125,31 @@ class ChatList {
     const chatProper = document.querySelectorAll(".chat-list-link");
     this.renderUnreadChatsInterface(chatProper, datas, datas2);
   }
+
+  sortChats(chatsData) {
+    const sortedData = chatsData.sort((a, b) => {
+      const dateA = `${a.chatTime.at(-1).dayOfMessage}T${String(
+        a.chatTime.at(-1).timeOfLastChatHour
+      ).padStart(2, 0)}:${String(a.chatTime.at(-1).timeOfLastChatMins).padStart(
+        2,
+        0
+      )}:${String(a.chatTime.at(-1).timeOfLastChatSec).padStart(2, 0)}`;
+
+      const dateB = `${b.chatTime.at(-1).dayOfMessage}T${String(
+        b.chatTime.at(-1).timeOfLastChatHour
+      ).padStart(2, 0)}:${String(b.chatTime.at(-1).timeOfLastChatMins).padStart(
+        2,
+        0
+      )}:${String(b.chatTime.at(-1).timeOfLastChatSec).padStart(2, 0)}`;
+
+      const dateMilliA = new Date(dateA);
+      const dateMilliB = new Date(dateB);
+
+      return dateMilliB - dateMilliA;
+    });
+    console.log(chatsData);
+    localStorage.setItem("chats", JSON.stringify(chatsData));
+  }
   renderUnreadChatsInterface(arr, data, data2) {
     const chatProperArr = Array.from(arr);
     chatProperArr.forEach((l, i) => {
@@ -504,9 +529,12 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             <p class="message-time ${
               obj.unread === false ? "greyColor" : ""
             }">${time}</p>
+            <div class='flex'>
           <div class="message-no  ${obj.unread === false ? "hidden" : ""}" ">${
         renderedMessageArr.length
       }</div>
+      <span aria-hidden="true" data-icon="ic-chevron-down-menu" class="favorites-dropdown hidden"><svg viewBox="0 0 20 20" height="20" preserveAspectRatio="xMidYMid meet" class="" fill="none"><title></title><path d="M9.99971 12.1L14.8997 7.2C15.083 7.01667 15.3164 6.925 15.5997 6.925C15.883 6.925 16.1164 7.01667 16.2997 7.2C16.483 7.38333 16.5747 7.61667 16.5747 7.9C16.5747 8.18333 16.483 8.41667 16.2997 8.6L10.6997 14.2C10.4997 14.4 10.2664 14.5 9.99971 14.5C9.73304 14.5 9.49971 14.4 9.29971 14.2L3.69971 8.6C3.51637 8.41667 3.42471 8.18333 3.42471 7.9C3.42471 7.61667 3.51637 7.38333 3.69971 7.2C3.88304 7.01667 4.11637 6.925 4.39971 6.925C4.68304 6.925 4.91637 7.01667 5.09971 7.2L9.99971 12.1Z" class='drop-icon' fill="#626262"></path></svg></span>
+      </div>
           </div>
 
           </div>
@@ -516,18 +544,43 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
       chatListContainer.insertAdjacentHTML("beforeend", html);
     });
   }
+  hoverFavoritesDropdown() {
+    const chatProper = document.querySelectorAll(".chat-list-link");
+    chatProper.forEach((c) => {
+      c.addEventListener("mouseover", function () {
+        const dropdown = c.querySelector(".favorites-dropdown");
+        dropdown.classList.remove("hidden");
+        dropdown.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
+      c.addEventListener("mouseout", function () {
+        c.querySelector(".favorites-dropdown").classList.add("hidden");
+      });
+    });
+  }
   showMessage(message, arr, data, id, main) {
     const now = new Date();
+    console.log(now);
+    console.log(now.getDay());
     const hour = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const dateString = `${year}-${String(month).padStart(2, 0)}-${String(
+      day
+    ).padStart(2, 0)}`;
 
     arr.push(message);
 
     const chatBoxTwo = document.querySelector(".chat-box-two");
+    console.log(dateString);
 
     data[id].seen = false;
     const timeObj = {
+      dayOfMessage: dateString,
       timeOfLastChatHour: hour,
       timeOfLastChatMins: minutes,
       timeOfLastChatSec: seconds,
@@ -537,6 +590,7 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
       0
     )}:${String(timeObj.timeOfLastChatMins).padStart(2, 0)}`;
     data[id].chatTime.push(timeObj);
+    this.sortChats(data);
     console.log(data);
     localStorage.setItem("chats", JSON.stringify(main));
 
