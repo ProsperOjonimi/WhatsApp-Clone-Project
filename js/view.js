@@ -24,7 +24,7 @@ const addChatsBack = document.querySelector(".btn_add-chats-back");
 const messages = document.querySelector(".socials-icon_messages");
 // const whatsappHeader = document.querySelector(".xgz6z4f");
 // const messageIcon = document.querySelector(".message-icon");
-// const statusIcon = document.querySelectorAll(".status-icon");
+
 // const channelsIcon = document.querySelectorAll(".channels-icon");
 // const communityIcon = document.querySelectorAll(".community-icon");
 // const settingsIcon = document.querySelectorAll(".settings-icon");
@@ -585,30 +585,67 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
   renderFavoritesDropdown() {
     const chatProper = document.querySelectorAll(".chat-list-link");
     chatProper.forEach((c) => {
-      c.addEventListener("mouseover", function () {
+      c.addEventListener("mouseover", function (e) {
+        e.stopPropagation();
         const dropdown = c.querySelector(".favorites-dropdown");
         dropdown.classList.remove("hidden");
         dropdown.addEventListener("click", function (e) {
           e.stopPropagation();
+
           const parent = dropdown.closest(".flex");
           const dropdownMenu = parent.querySelector(".dropdown-menu");
-          dropdownMenu.classList.toggle("hidden");
+          dropdownMenu.classList.remove("hidden");
+          setTimeout(() => {
+            const chatListRect = chatContainer.getBoundingClientRect();
+            const dropdownMenuRect = dropdownMenu.getBoundingClientRect();
+            const spaceBelow = chatListRect.bottom - dropdownMenuRect.bottom;
+
+            console.log(chatListRect);
+            console.log(dropdownMenuRect);
+            console.log(spaceBelow);
+            if (spaceBelow < 10) {
+              console.log("no space down");
+              dropdownMenu.style.top = "auto"; // reset top
+              dropdownMenu.style.bottom = "100%"; // position above parent
+            } else {
+              console.log("space dey");
+              dropdownMenu.style.bottom = "auto"; // reset bottom
+              dropdownMenu.style.top = "100%"; // position below parent
+            }
+          }, 0);
+
+          dropdownMenu.addEventListener("click", function (e) {
+            e.stopPropagation();
+          });
+          const dropdownMenuDiv = dropdownMenu.querySelector(".chats-options");
+          const children = dropdownMenuDiv.querySelectorAll("div");
+          children.forEach((d) => {
+            d.addEventListener("mouseover", function (e) {
+              e.stopPropagation();
+              // d.style.backgroundColor = "#F6F5F3";
+            });
+            d.addEventListener("mouseout", function (e) {
+              e.stopPropagation();
+              d.style.backgroundColor = "#FFFFFF";
+            });
+          });
         });
       });
-      c.addEventListener("mouseout", function () {
+      c.addEventListener("mouseout", function (e) {
+        e.stopPropagation();
         c.querySelector(".favorites-dropdown").classList.add("hidden");
       });
-
-      document.addEventListener("click", function (e) {
-        const isClickInside =
-          e.target.closest(".dropdown-menu") ||
-          e.target.closest(".favorites-dropdown");
-        if (!isClickInside) {
-          document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-            menu.classList.add("hidden");
-          });
-        }
-      });
+    });
+    document.addEventListener("click", function (e) {
+      const isClickInside =
+        e.target.closest(".dropdown-menu") ||
+        e.target.closest(".favorites-dropdown");
+      if (!isClickInside) {
+        document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+          menu.classList.add("hidden");
+          console.log(menu);
+        });
+      }
     });
   }
   showMessage(message, arr, data, id, main) {
@@ -645,13 +682,14 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
     this.sortChats(data);
     console.log(data);
     localStorage.setItem("chats", JSON.stringify(main));
+    const targetedChat = data.find((c) => c.id === id);
 
     const html = `
     <div class="message-tag-d">
               <p>${message}
                  <span>
 ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
-      data[id].seen ? "checkmark-icon_blue" : ""
+      targetedChat.seen ? "checkmark-icon_blue" : ""
     }"></ion-icon>
               </span></p>
             </div>
