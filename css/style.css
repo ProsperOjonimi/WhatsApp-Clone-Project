@@ -8,6 +8,8 @@ html {
 }
 body {
   font-family: "Segoe UI", Helvetica, sans-serif;
+  overflow-y: hidden;
+  position: relative;
 }
 button {
   background: none;
@@ -956,8 +958,30 @@ a:active {
   background-color: #f7f5f3;
   display: none;
   flex-direction: column;
-  align-items: center;
+
   text-align: center;
+}
+.blankDiv-status div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  margin-top: 25rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+.blankDiv-status div h1 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: #0a0a0a;
+}
+.blankDiv-status div p {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .blankDiv-footer {
   display: flex;
@@ -969,11 +993,19 @@ a:active {
   margin-top: 0rem;
   padding-top: 1rem;
 }
+.status-div-footer {
+  padding-top: 20rem;
+  gap: 1rem;
+}
 .lock-icon {
   display: inline-block;
   display: flex;
 }
 
+.blankDiv-footer-status {
+  display: flex;
+  margin-top: 30rem;
+}
 .picture {
   margin-top: 10rem;
 }
@@ -1130,4 +1162,104 @@ a:active {
 }
 .active-icon {
   background-color: #edebeb;
+}
+
+/* .status-page {
+  display: flex;
+  margin-left: -6rem;
+}
+ */
+
+.statusImages {
+  width: 700px;
+  height: 600px;
+}
+.status-page {
+  display: flex;
+  flex-direction: column;
+}
+.status-header {
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-right: 3rem;
+  padding-left: 2rem;
+}
+.status-header p {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.my-status,
+.recent-status,
+.viewed-status {
+  padding-left: 2rem;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+  padding-bottom: 2rem;
+}
+.my-status {
+  padding-bottom: 5rem;
+}
+.recent-status,
+.viewed-status {
+  padding-top: 3rem;
+}
+.recent-text,
+.viewed-text {
+  font-size: 1.4rem;
+  padding-left: 3rem;
+  color: #00000099;
+  font-weight: 600;
+}
+
+.recent-status-container {
+  padding-bottom: 8rem;
+}
+.my-status-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: black;
+  border-radius: 50%;
+}
+.my-status-icon-parent {
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 2px solid #1daa61;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myStatus-info p:first-child {
+  font-size: 1.6rem;
+  color: #0a0a0a;
+}
+.myStatus-info p:last-child {
+  font-size: 1.4rem;
+  color: #00000099;
+}
+.status-action-btns {
+  display: flex;
+  gap: 2rem;
+}
+
+.status-page {
+  display: flex;
+  margin-left: -6rem;
+}
+.statusImages-cont {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  width: 100%;
+  height: 100%;
+  z-index: 100000000;
 }

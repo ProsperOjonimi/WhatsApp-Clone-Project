@@ -480,6 +480,7 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
               id,
               storedChatsInfo
             );
+            console.log(data);
             chatList.renderMarkup(data);
             const chatProper = document.querySelectorAll(".chat-list-link");
             chatList.renderUnreadChatsInterface(
@@ -600,9 +601,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
             const dropdownMenuRect = dropdownMenu.getBoundingClientRect();
             const spaceBelow = chatListRect.bottom - dropdownMenuRect.bottom;
 
-            console.log(chatListRect);
-            console.log(dropdownMenuRect);
-            console.log(spaceBelow);
             if (spaceBelow < 10) {
               console.log("no space down");
               dropdownMenu.style.top = "auto"; // reset top
@@ -643,7 +641,6 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
       if (!isClickInside) {
         document.querySelectorAll(".dropdown-menu").forEach((menu) => {
           menu.classList.add("hidden");
-          console.log(menu);
         });
       }
     });
@@ -682,14 +679,15 @@ ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
     this.sortChats(data);
     console.log(data);
     localStorage.setItem("chats", JSON.stringify(main));
-    const targetedChat = data.find((c) => c.id === id);
+    // const targetedChat = data.find((c) => c.id === id);
+    // console.log(targetedChat);
 
     const html = `
     <div class="message-tag-d">
               <p>${message}
                  <span>
 ${timeOfSend} <ion-icon name="checkmark-done-outline" class="checkmark-icon ${
-      targetedChat.seen ? "checkmark-icon_blue" : ""
+      data[id].seen ? "checkmark-icon_blue" : ""
     }"></ion-icon>
               </span></p>
             </div>

@@ -7,6 +7,8 @@ import { inputBar } from "./view.js";
 import { unreadMessages } from "./view.js";
 import { allBtn, unreadBtn } from "./view.js";
 import { status } from "./status.js";
+import { myStatus } from "./statusData.js";
+import { statusData } from "./statusData.js";
 
 const statusIcon = document.querySelector(".status-icon-cont");
 const messagesIcon = document.querySelector(".messages-icon-cont");
@@ -81,7 +83,14 @@ export const initializeApp = function (data) {
     `;
     messagesIcon.insertAdjacentHTML("afterbegin", html2);
     // Rendering status page
-    status.renderStatusPage(storedChatsInfo);
+    status.renderStatusPage(myStatus, statusData);
+
+    // Displaying my status on click
+    const myStatusContainer = document.querySelector(".my-status");
+    console.log(myStatusContainer);
+    myStatusContainer.addEventListener("click", function () {
+      status.viewMyStatus(myStatus);
+    });
   });
   statusIcon.addEventListener("mouseover", function () {
     this.classList.add("active-icon");
@@ -106,7 +115,7 @@ export const initializeApp = function (data) {
 
     // Rendering chat list page
     chatContainer.classList.remove("hidden");
-    statusContainer.classList.add("hidden");
+    statusContainer.style.display = "none";
 
     blankDiv.style.display = "flex";
     chatInterface.style.display = "flex";
@@ -125,6 +134,7 @@ const updateUnreadChats = function (data) {
   unreadBtn.addEventListener("click", function () {
     chatList.toggleUnreadActive();
     chatList.renderUnreadChats(data, storedChatsInfo);
+
     chatList.renderFavoritesDropdown();
   });
 };
@@ -145,3 +155,5 @@ const allChats = function () {
 inputBar.addEventListener("input", chatList.filterSearch);
 allChats();
 initializeApp(storedChatsInfo);
+
+statusContainer.style.display = "none";
