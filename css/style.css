@@ -1171,8 +1171,9 @@ a:active {
  */
 
 .statusImages {
-  width: 700px;
-  height: 600px;
+  width: 760px;
+  height: 100%;
+  z-index: 100000000000000000000000000;
 }
 .status-page {
   display: flex;
@@ -1254,12 +1255,19 @@ a:active {
   margin-left: -6rem;
 }
 .statusImages-cont {
-  position: absolute;
+  position: relative;
   display: none;
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(8px);
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 100vh;
   z-index: 100000000;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  filter: blur(50px);
+  transform: scale(1.1);
+  z-index: 1;
 }

@@ -52,6 +52,7 @@ class Status {
       `;
 
       recentContainer.insertAdjacentHTML("afterbegin", html);
+      statusImage.innerHTML = "";
     });
 
     const viewedChats = data2.filter((d) => d.isViewed === true);
@@ -60,15 +61,24 @@ class Status {
 
   viewMyStatus(data) {
     const html = `
-    <img src="${data[0].image[0]}" class="statusImages"/>
+       <div class="overlay"></div>
+    <img src="${data[0].image[1]}" class="statusImages"/>
     `;
     statusImage.style.display = "flex";
-
+    statusImage.innerHTML = "";
     statusImage.insertAdjacentHTML("afterbegin", html);
-
+    const overlay = document.querySelector(".overlay");
+    console.log(overlay);
+    console.log(data[0].image[0]);
+    // overlay.style.background = `url(${data[0].image[0]}) center/cover no-repeat`;
+    overlay.style.backgroundImage = `url('${data[0].image[1]}')`;
+    overlay.style.backgroundPosition = "center";
+    overlay.style.backgroundSize = "cover";
+    overlay.style.backgroundRepeat = "no-repeat";
     statusImage.addEventListener("click", function () {
       statusImage.style.display = "none";
-      statusImage.innerHTML = "";
+
+      console.log(statusImage);
     });
   }
 }
