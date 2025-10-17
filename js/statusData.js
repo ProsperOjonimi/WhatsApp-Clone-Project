@@ -11,9 +11,9 @@ export const statusData = [
     id: 0,
     name: "Stephanie🌹",
     time: ["Today at 12:21", "Today at 12:22"],
-    images: [
-      "https://i.pinimg.com/1200x/99/3e/9e/993e9e04c70d185ba702a4ef5edadae7.jpg",
-      "https://i.pinimg.com/736x/aa/83/2b/aa832bff091a713aea00a8f59e843958.jpg",
+    image: [
+      "https://jpeg.org/images/aic-home.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Cute_dog.jpg/1024px-Cute_dog.jpg",
     ],
     isViewed: false,
   },
@@ -22,9 +22,9 @@ export const statusData = [
     id: 1,
     name: "Japheth",
     time: ["Today at 13:11", "Today at 15:06"],
-    images: [
+    image: [
+      "/img/Status Images/bitcoin.jpg",
       "https://static.vecteezy.com/system/resources/thumbnails/053/733/179/small_2x/every-detail-of-a-sleek-modern-car-captured-in-close-up-photo.jpg",
-      "https://i.pinimg.com/736x/aa/83/2b/aa832bff091a713aea00a8f59e843958.jpg",
     ],
     isViewed: false,
   },
@@ -32,8 +32,9 @@ export const statusData = [
     id: 2,
     name: "Eniola 2",
     time: ["Today at 17:11"],
-    images: [
-      "https://i.pinimg.com/736x/59/10/35/591035c3758ddfb094e78604d0bda887.jpg",
+    image: [
+      "https://academy-cdn.wedio.com/2022/06/jpeg-format.jpg",
+      "https://jpeg.org/images/jpeg-home.jpg",
     ],
     isViewed: false,
   },
