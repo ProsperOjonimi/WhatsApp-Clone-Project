@@ -208,7 +208,7 @@ a:active {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
   width: 94%;
-  padding-left: 0.5rem;
+  padding-left: 0.9rem;
   display: flex;
   gap: 1.5rem;
   align-items: center;
@@ -371,7 +371,10 @@ a:active {
 .checkmark-icon_blue {
   color: #007bfc;
 }
-
+.blankDiv-footer-p {
+  display: flex;
+  padding-left: 2rem;
+}
 .message-information {
   display: flex;
   width: 20%;
@@ -1361,34 +1364,31 @@ a:active {
   position: absolute;
   right: 0;
 }
-.progress-bar1 {
+.progress-container {
   position: absolute;
-  width: 250px;
-  height: 10px;
 
-  z-index: 1000000;
-  left: 500px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 2rem;
+
+  z-index: 1000;
   top: 20px;
-  border-radius: 5px;
-  background-color: #5a5a5a;
+
   opacity: 0.9;
+  display: flex;
 }
+.progress-bar1,
 .progress-bar2 {
-  position: absolute;
   width: 250px;
   height: 10px;
-  right: 500px;
-
-  z-index: 1000000;
-  top: 20px;
-  border-radius: 5px;
   background-color: #5a5a5a;
-  opacity: 0.9;
+  border-radius: 5px;
 }
+
 .fill1,
 .fill2 {
   background-color: white;
-  width: 50%;
+  width: 0%;
   height: 100%;
   border-radius: 5px;
 }

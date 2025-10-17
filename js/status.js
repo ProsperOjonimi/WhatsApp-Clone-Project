@@ -99,11 +99,13 @@ class Status {
        <ion-icon name="chevron-back-outline" class="toleft-btn"></ion-icon>
        </button>
        </span>
+       <div class="progress-container">
        <div class="progress-bar1">
        <div class="fill1"></div>
        </div>
        <div class="progress-bar2">
         <div class="fill2"></div>
+       </div>
        </div>
         ${renderStatusImages(data.image).join("\n")}
    
@@ -152,6 +154,54 @@ class Status {
     });
   }
   changeStatus() {
+    const changeStatus1 = function () {
+      const fill1 = document.querySelector(".fill1");
+      console.log(fill1);
+      let width = 0;
+      const interval = setInterval(() => {
+        width += 1 / 3;
+        fill1.style.width = `${width}%`;
+      }, 10);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        const statusImages = document.querySelectorAll(".statusImages");
+        statusImages.forEach((i) => {
+          if (+i.dataset.id === 2) {
+            const id = +i.dataset.id;
+
+            i.style.transform = `translate(${id * 70 - (id + 1) * 70}%)`;
+            curStatus = i;
+            const overlay = document.querySelector(".overlay");
+            overlay.style.backgroundImage = `url('${curStatus.src}')`;
+          }
+          if (+i.dataset.id === 1) {
+            i.style.transform = `translate(${-p * 140}%)`;
+          }
+
+          changeStatus2();
+        });
+      }, 3090);
+    };
+    changeStatus1();
+
+    function changeStatus2() {
+      const fill2 = document.querySelector(".fill2");
+      console.log(fill2);
+      let width = 0;
+      const interval = setInterval(() => {
+        width += 1 / 3;
+        fill2.style.width = `${width}%`;
+      }, 10);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        statusImage.style.display = "none";
+        const body = document.querySelector("body");
+        body.style.overflowX = "auto";
+      }, 3090);
+    }
+
     const toLeftBtn = document.querySelector(".toleft-cont");
     const toRightBtn = document.querySelector(".toright-cont");
     let n = 1;
