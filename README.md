@@ -25,20 +25,6 @@ A fully responsive **WhatsApp Web clone** built with **HTML, CSS, and JavaScript
 
 ---
 
-## 📸 Screenshots
-
-- **Chat Interface:**  
-  ![Chat Interface](/assets/chat-interface.png)
-
-- **Status Page:**  
-  ![Status Page](/assets/status-page.png)
-
-- **Unread Chats:**  
-  ![Search & Filter](/assets/unread-chats.png)
-
-  - **Status:**  
-    ![Search & Filter](/assets/status.png)
-
 ---
 
 ## 🚀 Getting Started
@@ -49,6 +35,20 @@ A fully responsive **WhatsApp Web clone** built with **HTML, CSS, and JavaScript
 git clone https://github.com/ProsperOjonimi/WhatsApp-Clone-Project.git
 ```
 
-### 2. Open in Browser
+### 2. Navigate to the project folder
 
-Open index.html in your browser to see the app in action.
+```bash
+cd WhatsApp-Clone-Project
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm start
+```
